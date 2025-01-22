@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const yesButton = document.getElementById("yes-button");
     const noButton = document.getElementById("no-button");
     const persuasiveText = document.getElementById("persuasive-text");
+    const valentineGif = document.getElementById("valentine-gif"); // The img element for the gif
     
     // Array of persuasive messages for the "No" button
     const persuasiveMessages = [
@@ -10,6 +11,13 @@ document.addEventListener("DOMContentLoaded", function () {
         "You're breaking my heart....",
         "I'm gonna cry....",
         "😞"
+    ];
+
+    const gifs = [
+        "images/valentine.gif",
+        "images/love1.gif",
+        "images/love2.gif",
+        "images/love3.gif"
     ];
 
     let messageIndex = 0; // To keep track of the current message
@@ -21,6 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Change the text color to a different color
     persuasiveText.style.color = "#FF1493"; // Deep pink color
+
+     valentineGif.src = gifs[gifIndex]; // Set the initial gif
 
     // Function to handle "No" button click (persuasive text and button scaling)
     noButton.addEventListener("click", function() {
