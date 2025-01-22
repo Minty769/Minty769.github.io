@@ -1,41 +1,109 @@
-/* Main Page Styles */
+/* Body styling */
 body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  background-color: #f7e1e1;
+    font-family: Arial, sans-serif;
+    background-color: #fce4ec; /* Light pink background */
+    color: #d81b60; /* Text color */
+    text-align: center;
+    margin: 0;
+}
+
+/* Header styling */
+header {
+    background-color: #d81b60; /* Dark pink header */
+    padding: 20px;
 }
 
 h1 {
-  color: #d03c4b;
+    color: white;
+    font-size: 3em;
+    margin: 0;
 }
 
+/* Main section styling */
+main {
+    padding: 20px;
+}
+
+/* Content section styling */
+section {
+    font-size: 1.5em;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Initial content styling */
+#initial-content {
+    margin-top: 30px;
+}
+
+/* Button container styling */
+#button-container {
+    margin-top: 20px;
+}
+
+/* General button styling */
 button {
-  background-color: #d03c4b;
-  color: white;
-  font-size: 16px;
-  padding: 10px 20px;
-  margin: 10px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: white; /* Text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #c02b3d;
+/* "Yes" Button - Dark Pink */
+#yes-button {
+    background-color: #d81b60; /* Dark pink */
 }
 
-#buttons-container {
-  margin-top: 20px;
+/* "Yes" Button Hover - Light Pink */
+#yes-button:hover {
+    background-color: #ff4081; /* Light pink */
 }
 
+/* "No" Button - Light Pink */
+#no-button {
+    background-color: #ff4081; /* Light pink */
+}
+
+/* "No" Button Hover - Dark Pink */
+#no-button:hover {
+    background-color: #d81b60; /* Dark pink */
+}
+
+/* Persuasive text styling */
 #persuasive-text {
-  font-size: 18px;
-  color: #333;
-  margin-top: 20px;
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #FF1493; /* Deep pink color */
+    display: none; /* Initially hidden */
 }
 
-#valentine-gif {
-  margin-top: 30px;
+/* Styling for the "Yes" message page (nextpage.html) */
+#yes-message {
+    margin-top: 30px;
+    font-size: 1.5em;
+    color: #FF1493;
+}
+
+#new-button-container {
+    margin-top: 20px;
+}
+
+#dont-leave-button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #d81b60; /* Dark pink button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#dont-leave-button:hover {
+    background-color: #ff4081; /* Light pink on hover */
 }
