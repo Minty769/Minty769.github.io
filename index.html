@@ -49,16 +49,27 @@
       font-size: 1.5em;
       color: #555;
     }
+    .calendar-container {
+      margin-top: 20px;
+      display: none; /* Initially hide the calendar */
+      text-align: center;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1 id="message">Hi Lena, Would you like to be my Valentine's?</h1>
+    <h1 id="message">Do you want to be my valentine?</h1>
     <div class="buttons">
-      <button class="yes-button" id="yesButton" onclick="goToCalendar()">Yes</button>
+      <button class="yes-button" id="yesButton" onclick="showCalendar()">Yes</button>
       <button class="no-button" id="noButton" onclick="changeMessage()">No</button>
     </div>
     <div class="no-message" id="noMessage"></div>
+    
+    <!-- Container for the embedded Google Calendar -->
+    <div class="calendar-container" id="calendarContainer">
+      <iframe src="https://calendar.google.com/calendar/embed?src=6ffd6bbc1b72104a4723897968975edd14f219e38c7b6bc8c25fa1d721dbe335%40group.calendar.google.com&ctz=UTC" 
+              style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    </div>
   </div>
 
   <script>
@@ -70,11 +81,12 @@
       document.getElementById("yesButton").style.padding = "15px 30px"; // Increase size of 'Yes' button
     }
 
-    // Function to redirect to the Google Calendar when "Yes" is clicked
-    function goToCalendar() {
-      // Open the calendar in a new page or embed it directly within your site
-      // If you want to open the Google Calendar directly:
-      window.location.href = "https://calendar.google.com/calendar/embed?src= "<iframe src="https://calendar.google.com/calendar/embed?src=6ffd6bbc1b72104a4723897968975edd14f219e38c7b6bc8c25fa1d721dbe335%40group.calendar.google.com&ctz=UTC" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>"  &ctz=America%2FNew_York";
+    // Function to show the embedded Google Calendar when "Yes" is clicked
+    function showCalendar() {
+      document.getElementById("calendarContainer").style.display = "block"; // Show the calendar
+      document.getElementById("message").textContent = "Let's schedule a time! 🗓️"; // Update the message
+      document.getElementById("yesButton").style.display = "none"; // Hide the 'Yes' button
+      document.getElementById("noButton").style.display = "none"; // Hide the 'No' button
     }
   </script>
 </body>
