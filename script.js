@@ -52,6 +52,6 @@ document.addEventListener("DOMContentLoaded", function () {
         persuasiveText.style.display = "none"; // Hide the persuasive text
 
         // Display the "Yayyy!" GIF and text
-        yesMessage.style.display = "block";
+        yesMessage.style.display = "block"; // Show the new content
     });
 });
