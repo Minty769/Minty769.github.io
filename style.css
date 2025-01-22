@@ -43,6 +43,7 @@ button {
 #yes-button {
     background-color: #d81b60;
     color: white;
+    transition: transform 0.3s ease; /* Smooth transition for scaling */
 }
 
 #no-button {
