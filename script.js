@@ -43,9 +43,16 @@ document.addEventListener("DOMContentLoaded", function () {
     yesButton.addEventListener("click", function() {
         // Redirect to the next page (nextpage.html) when "Yes" is clicked
         window.location.href = "nextpage.html"; // Navigate to nextpage.html
+    });
+});
 
-        document.getElementById('dont-leave-button').addEventListener('click', () => {
-    window.location.href = "formpage.html"; // Redirect to the new page
-    });
-    });
+// Handle "Don't leave yet!" button on the next page
+document.addEventListener("DOMContentLoaded", function () {
+    const dontLeaveButton = document.getElementById('dont-leave-button');
+    
+    if (dontLeaveButton) {
+        dontLeaveButton.addEventListener('click', function() {
+            window.location.href = "formpage.html"; // Redirect to the form page
+        });
+    }
 });
