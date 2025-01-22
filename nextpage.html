@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Choose Your Availability</title>
-  <link rel="stylesheet" href="nextpage.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yayyy! You chose YES!</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Yayyy! Thank you for choosing to stay!</h1>
+    <header>
+        <h1>Happy Valentine's Day!</h1>
+    </header>
+    <main>
+        <section>
+            <div id="yes-message">
+                <img src="images/happy.gif" alt="Happy Valentine's gif" width="300">
+                <p>Yayyy! You chose YES! ❤️</p>
+            </div>
 
-  <!-- "Yayyy!" GIF -->
-  <img id="happy-gif" src="happy.gif" alt="Happy Valentine's GIF" width="400" />
-
-  <div>
-    <h2>Choose your available date and time</h2>
-    <input type="date" id="available-date" placeholder="Select Date">
-    <input type="time" id="available-time" placeholder="Select Time">
-    <button id="save-button">Save Availability</button>
-  </div>
-
-  <div id="user-data"></div> <!-- Where we will display saved data -->
-
-  <script type="module" src="nextpage.js"></script>
+            <div id="new-button-container">
+                <button id="dont-leave-button">Don't leave yet, click here</button>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
