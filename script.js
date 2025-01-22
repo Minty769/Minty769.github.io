@@ -19,6 +19,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initially set the first persuasive message
     persuasiveText.textContent = persuasiveMessages[messageIndex];
 
+    // Change the text color to a different color
+    persuasiveText.style.color = "#FF1493"; // Deep pink color
+
     // Function to handle "No" button click (persuasive text and button scaling)
     noButton.addEventListener("click", function() {
         yesButton.classList.add("grow"); // Add the "grow" class to grow the "Yes" button
