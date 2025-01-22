@@ -44,4 +44,12 @@ document.addEventListener("DOMContentLoaded", function () {
         // Redirect to the next page (nextpage.html) when "Yes" is clicked
         window.location.href = "nextpage.html"; // Navigate to nextpage.html
     });
+    document.addEventListener("DOMContentLoaded", function () {
+    const dontLeaveButton = document.getElementById("dont-leave-button");
+
+    // Function to handle the "Don't leave yet" button click
+    dontLeaveButton.addEventListener("click", function() {
+        alert("We’re glad you're staying! ❤️");
+        // You can add any other action here, like redirecting, or showing more content
+    });
 });
