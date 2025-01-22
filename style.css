@@ -12,7 +12,7 @@ header {
 }
 
 h1 {
-    color: purple;
+    color: white;
     font-size: 3em;
     margin: 0;
 }
@@ -49,12 +49,6 @@ button {
 #no-button {
     background-color: #ff4081;
     color: white;
-}
-
-/* Style when the "Yes" button grows */
-#yes-button.grow {
-    transform: scale(1.2);
-    transition: transform 0.3s ease;
 }
 
 /* Styling for persuasive text */
