@@ -12,13 +12,11 @@
     </header>
     <main>
         <section>
-            <!-- New GIF and message displayed when the user clicks "Yes" -->
             <div id="yes-message">
                 <img src="images/happy.gif" alt="Happy Valentine's gif" width="300">
                 <p>Yayyy! You chose YES! ❤️</p>
             </div>
 
-            <!-- New button that says "Don't leave yet, click here" -->
             <div id="new-button-container">
                 <button id="dont-leave-button">Don't leave yet, click here</button>
             </div>
