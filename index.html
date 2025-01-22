@@ -3,108 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Planning</title>
-    <style>
-        #yesButton {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        #noButton {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        #eventForm {
-            display: none; /* Hide the event form initially */
-            margin-top: 20px;
-        }
-
-        img {
-            width: 150px;
-            height: auto;
-            margin-bottom: 20px;
-        }
-
-        #yesButton.modified {
-            font-size: 24px; /* Increase size on press */
-            background-color: #ff6347; /* Optional: Change color */
-        }
-    </style>
+    <title>Valentine's Day Website</title>
 </head>
 <body>
-
-    <!-- Cat GIF at the top -->
-    <div>
-        <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Cute Cat">
-    </div>
-
-    <!-- Yes and No Buttons -->
-    <div>
-        <button id="yesButton">Yes</button>
-        <button id="noButton">No</button>
-    </div>
-
-    <!-- Event Planning Form (Initially Hidden) -->
-    <div id="eventForm">
-        <h1>Create Valentine's Event for My Google Calendar</h1>
-        <form id="eventPlanningForm">
-            <!-- Event Title is pre-set to 'Valentine's' -->
-            <input type="hidden" id="eventTitle" name="eventTitle" value="Valentine's">
-            
-            <label for="eventDate">Event Date:</label>
-            <input type="datetime-local" id="eventDate" name="eventDate" required><br><br>
-            
-            <label for="eventDescription">Event Description:</label>
-            <input type="text" id="eventDescription" name="eventDescription"><br><br>
-            
-            <button type="submit">Create Event</button>
-        </form>
-    </div>
-
-    <script>
-        let noButtonClickCount = 0;
-
-        // Handle the "No" button click
-        document.getElementById('noButton').addEventListener('click', function() {
-            // Only change the "Yes" button once on each "No" press
-            if (noButtonClickCount === 0) {
-                const yesButton = document.getElementById('yesButton');
-                yesButton.classList.add('modified');  // Change size and color
-                yesButton.textContent = "Are you sure?"; // Change text on modification
-                noButtonClickCount++;
-            }
-        });
-
-        // Handle the "Yes" button click to show the event planning form
-        document.getElementById('yesButton').addEventListener('click', function() {
-            document.getElementById('eventForm').style.display = 'block'; // Show the form
-        });
-
-        // Handle the event planning form submission
-        document.getElementById('eventPlanningForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const eventTitle = document.getElementById('eventTitle').value;
-            const eventDate = document.getElementById('eventDate').value;
-            const eventDescription = document.getElementById('eventDescription').value;
-
-            // Format the date in Google Calendar's required format (YYYYMMDDTHHmmssZ)
-            const startDate = new Date(eventDate);
-            const endDate = new Date(startDate);
-            endDate.setHours(startDate.getHours() + 1);  // Default to 1-hour event
-
-            const startDateString = startDate.toISOString().replace(/[-:]/g, "").split(".")[0];
-            const endDateString = endDate.toISOString().replace(/[-:]/g, "").split(".")[0];
-
-            // Build the Google Calendar URL
-            const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventTitle)}&dates=${startDateString}/${endDateString}&details=${encodeURIComponent(eventDescription)}`;
-
-            // Redirect the user to Google Calendar with the pre-filled event
-            window.location.href = calendarUrl;
-        });
-    </script>
+    <header>
+        <h1>Happy Valentine's Day!</h1>
+    </header>
+    <main>
+        <section>
+            <p>Welcome to our special Valentine's website! 💘</p>
+        </section>
+    </main>
 </body>
 </html>
