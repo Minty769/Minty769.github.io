@@ -13,12 +13,18 @@
     <main>
         <section>
             <!-- New GIF and message displayed when the user clicks "Yes" -->
-            <img src="images/happy.gif" alt="Happy Valentine's gif" width="300">
-            <p>Yayyy! You chose YES! ❤️</p>
-            
-            <!-- You can add a button here to navigate back if needed -->
-            <button onclick="window.location.href='index.html'">Go Back</button>
+            <div id="yes-message">
+                <img src="images/happy.gif" alt="Happy Valentine's gif" width="300">
+                <p>Yayyy! You chose YES! ❤️</p>
+            </div>
+
+            <!-- New button that says "Don't leave yet, click here" -->
+            <div id="new-button-container">
+                <button id="dont-leave-button">Don't leave yet, click here</button>
+            </div>
         </section>
     </main>
+    
+    <script src="script.js"></script>
 </body>
 </html>
