@@ -58,8 +58,7 @@
 </head>
 <body>
   <div class="container">
-    <h1 id="message">Hi Lena!?</h1>
-    <h2 id="message">Would you like to be my Valentine's?</h2>
+    <h1 id="message">Do you want to be my valentine?</h1>
     <div class="buttons">
       <button class="yes-button" id="yesButton" onclick="showCalendar()">Yes</button>
       <button class="no-button" id="noButton" onclick="changeMessage()">No</button>
@@ -75,15 +74,14 @@
 
   <script>
     let textChanges = [
-      "Think again...",
-      "I'll wait...",
-      "Are you sure? ",
-      "You can still say Yes...",
-      "You're breaking my heart...",
-      "Okay, I'll try again..."
+      "Maybe next time... 😢",
+      "I'll wait... ⏳",
+      "Are you sure? 🤔",
+      "You can still say Yes... 😉",
+      "Okay, I'll try again... 😅"
     ];
     let textIndex = 0;
-    let growInterval;
+    let yesButtonSize = 16; // Initial font size in px (you can adjust as needed)
 
     // Function to change the message when "No" is clicked
     function changeMessage() {
@@ -92,22 +90,14 @@
         textIndex++;
       }
 
-      // Make the 'Yes' button larger
+      // Make the 'Yes' button grow once
       const yesButton = document.getElementById("yesButton");
-      const currentSize = parseInt(window.getComputedStyle(yesButton).fontSize);
-      yesButton.style.fontSize = `${currentSize + 2}px`; // Increase font size gradually
-      yesButton.style.padding = `${currentSize + 5}px ${currentSize + 10}px`; // Increase padding as well
 
-      // If the button hasn't grown too large, continue to grow
-      if (yesButton.style.fontSize.replace('px', '') < 50) {
-        if (!growInterval) {
-          growInterval = setInterval(() => {
-            const currentSize = parseInt(window.getComputedStyle(yesButton).fontSize);
-            yesButton.style.fontSize = `${currentSize + 2}px`;
-            yesButton.style.padding = `${currentSize + 5}px ${currentSize + 10}px`;
-          }, 500); // Increase size every 500ms
-        }
-      }
+      // Increase the size by a fixed amount each time "No" is clicked
+      yesButtonSize += 2; // Increment the font size by 2px (you can change this value)
+
+      yesButton.style.fontSize = `${yesButtonSize}px`; // Set the new font size
+      yesButton.style.padding = `${yesButtonSize + 5}px ${yesButtonSize + 10}px`; // Increase padding as well
     }
 
     // Function to show the embedded Google Calendar when "Yes" is clicked
