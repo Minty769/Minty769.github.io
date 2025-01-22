@@ -70,3 +70,11 @@ button {
     color: #880e4f;
     display: none; /* Initially hidden */
 }
+
+/* Styling for the "Yes" message (new GIF and text) */
+#yes-message {
+    margin-top: 30px;
+    font-size: 1.5em;
+    color: #FF1493;
+    display: none; /* Initially hidden */
+}
