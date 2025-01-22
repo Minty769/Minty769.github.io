@@ -26,7 +26,7 @@ section {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center buttons and text horizontally */
+    align-items: center; /* Center the content */
     justify-content: center;
 }
 
@@ -34,10 +34,17 @@ p {
     color: #880e4f;
 }
 
+/* Style for button container to align buttons next to each other */
+#button-container {
+    display: flex;
+    justify-content: center; /* Align buttons horizontally */
+    gap: 20px; /* Add space between the buttons */
+    margin-top: 20px;
+}
+
 /* Style for buttons */
 button {
     padding: 10px 20px;
-    margin: 10px;
     font-size: 1.2em;
     cursor: pointer;
     border: none;
@@ -48,7 +55,7 @@ button {
 #yes-button {
     background-color: #d81b60;
     color: white;
-    max-width: 200px; /* Set a max width to prevent it from growing too large */
+    max-width: 200px; /* Prevent the button from growing too large */
 }
 
 #no-button {
