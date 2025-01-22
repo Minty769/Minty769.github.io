@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const persuasiveMessages = [
         "Are you sure?",
         "Don't do this to me...,
-        "You're breaking my heart...",
+        "You are breaking my heart...",
         "I'm gonna cry....",
         "😞"
     ];
