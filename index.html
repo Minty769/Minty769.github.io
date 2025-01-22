@@ -1,12 +1,83 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My GitHub Page</title>
+  <style>
+    /* Center the content in the page */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+    }
+    .container {
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    button {
+      font-size: 1.2em;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: transform 0.3s ease, font-size 0.3s ease;
+    }
+    button:hover {
+      transform: scale(1.1);
+    }
+    .yes-button {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .no-button {
+      background-color: #f44336;
+      color: white;
+    }
+    .no-message {
+      margin-top: 20px;
+      font-size: 1.5em;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to My GitHub Page!</h1>
-  <p>Here is my embedded Google Calendar:</p>
-<iframe src="https://calendar.google.com/calendar/embed?src=6ffd6bbc1b72104a4723897968975edd14f219e38c7b6bc8c25fa1d721dbe335%40group.calendar.google.com&ctz=UTC" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+  <div class="container">
+    <h1 id="message">Do you want to be my valentine?</h1>
+    <div class="buttons">
+      <button class="yes-button" id="yesButton" onclick="goToCalendar()">Yes</button>
+      <button class="no-button" id="noButton" onclick="changeMessage()">No</button>
+    </div>
+    <div class="no-message" id="noMessage"></div>
+  </div>
+
+  <script>
+    // Function to change the message when "No" is clicked
+    function changeMessage() {
+      document.getElementById("message").textContent = "Maybe next time... 😢";
+      document.getElementById("noButton").style.display = "none"; // Hide the 'No' button
+      document.getElementById("yesButton").style.fontSize = "2em"; // Make the 'Yes' button larger
+      document.getElementById("yesButton").style.padding = "15px 30px"; // Increase size of 'Yes' button
+    }
+
+    // Function to redirect to the Google Calendar when "Yes" is clicked
+    function goToCalendar() {
+      window.location.href = "<iframe src="https://calendar.google.com/calendar/embed?src=6ffd6bbc1b72104a4723897968975edd14f219e38c7b6bc8c25fa1d721dbe335%40group.calendar.google.com&ctz=UTC" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>";
+    }
+  </script>
 </body>
 </html>
+
+
+
+
