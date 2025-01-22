@@ -1,112 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My GitHub Page</title>
-  <style>
-    /* Center the content in the page */
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f7f7f7;
-    }
-    .container {
-      text-align: center;
-    }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-    }
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-    button {
-      font-size: 1.2em;
-      padding: 10px 20px;
-      cursor: pointer;
-      transition: transform 0.3s ease, font-size 0.3s ease;
-    }
-    button:hover {
-      transform: scale(1.1);
-    }
-    .yes-button {
-      background-color: #4CAF50;
-      color: white;
-    }
-    .no-button {
-      background-color: #f44336;
-      color: white;
-    }
-    .no-message {
-      margin-top: 20px;
-      font-size: 1.5em;
-      color: #555;
-    }
-    .calendar-container {
-      margin-top: 20px;
-      display: none; /* Initially hide the calendar */
-      text-align: center;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Event to Google Calendar</title>
 </head>
 <body>
-  <div class="container">
-    <h1 id="message">Do you want to be my valentine?</h1>
-    <div class="buttons">
-      <button class="yes-button" id="yesButton" onclick="showCalendar()">Yes</button>
-      <button class="no-button" id="noButton" onclick="changeMessage()">No</button>
-    </div>
-    <div class="no-message" id="noMessage"></div>
-    
-    <!-- Container for the embedded Google Calendar -->
-    <div class="calendar-container" id="calendarContainer">
-      <iframe src="https://calendar.google.com/calendar/embed?src=6ffd6bbc1b72104a4723897968975edd14f219e38c7b6bc8c25fa1d721dbe335%40group.calendar.google.com&ctz=UTC" 
-              style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-    </div>
-  </div>
+    <h1>Create Event for My Public Google Calendar</h1>
+    <form id="eventForm">
+        <label for="eventTitle">Event Title:</label>
+        <input type="text" id="eventTitle" name="eventTitle" required><br><br>
+        
+        <label for="eventDate">Event Date:</label>
+        <input type="datetime-local" id="eventDate" name="eventDate" required><br><br>
+        
+        <label for="eventDescription">Event Description:</label>
+        <input type="text" id="eventDescription" name="eventDescription"><br><br>
+        
+        <label for="eventLocation">Event Location:</label>
+        <input type="text" id="eventLocation" name="eventLocation"><br><br>
+        
+        <button type="submit">Create Event</button>
+    </form>
 
-  <script>
-    let textChanges = [
-      "Maybe next time... 😢",
-      "I'll wait... ⏳",
-      "Are you sure? 🤔",
-      "You can still say Yes... 😉",
-      "Okay, I'll try again... 😅"
-    ];
-    let textIndex = 0;
-    let yesButtonSize = 16; // Initial font size in px (you can adjust as needed)
+    <script>
+        document.getElementById('eventForm').addEventListener('submit', function (event) {
+            event.preventDefault();
 
-    // Function to change the message when "No" is clicked
-    function changeMessage() {
-      if (textIndex < textChanges.length) {
-        document.getElementById("message").textContent = textChanges[textIndex];
-        textIndex++;
-      }
+            const eventTitle = document.getElementById('eventTitle').value;
+            const eventDate = document.getElementById('eventDate').value;
+            const eventDescription = document.getElementById('eventDescription').value;
+            const eventLocation = document.getElementById('eventLocation').value;
 
-      // Make the 'Yes' button grow once
-      const yesButton = document.getElementById("yesButton");
+            // Format the date in Google Calendar's required format (YYYYMMDDTHHmmssZ)
+            const startDate = new Date(eventDate);
+            const endDate = new Date(startDate);
+            endDate.setHours(startDate.getHours() + 1);  // Default to 1-hour event
 
-      // Increase the size by a fixed amount each time "No" is clicked
-      yesButtonSize += 2; // Increment the font size by 2px (you can change this value)
+            const startDateString = startDate.toISOString().replace(/[-:]/g, "").split(".")[0];
+            const endDateString = endDate.toISOString().replace(/[-:]/g, "").split(".")[0];
 
-      yesButton.style.fontSize = `${yesButtonSize}px`; // Set the new font size
-      yesButton.style.padding = `${yesButtonSize + 5}px ${yesButtonSize + 10}px`; // Increase padding as well
-    }
+            // Build the Google Calendar URL
+            const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventTitle)}&dates=${startDateString}/${endDateString}&details=${encodeURIComponent(eventDescription)}&location=${encodeURIComponent(eventLocation)}`;
 
-    // Function to show the embedded Google Calendar when "Yes" is clicked
-    function showCalendar() {
-      document.getElementById("calendarContainer").style.display = "block"; // Show the calendar
-      document.getElementById("message").textContent = "Let's schedule a time! 🗓️"; // Update the message
-      document.getElementById("yesButton").style.display = "none"; // Hide the 'Yes' button
-      document.getElementById("noButton").style.display = "none"; // Hide the 'No' button
-    }
-  </script>
+            // Redirect the user to Google Calendar with the pre-filled event
+            window.location.href = calendarUrl;
+        });
+    </script>
 </body>
 </html>
+
