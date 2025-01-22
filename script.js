@@ -2,9 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const yesButton = document.getElementById("yes-button");
     const noButton = document.getElementById("no-button");
     const persuasiveText = document.getElementById("persuasive-text");
-    const yesMessage = document.getElementById("yes-message"); // New area for "Yayyy!" message
-    const initialContent = document.getElementById("initial-content"); // Initial content (GIF and text)
-
+    
     // Array of persuasive messages for the "No" button
     const persuasiveMessages = [
         "Come on, it's Valentine's Day! You know you want to say Yes! ❤️",
@@ -41,17 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
         persuasiveText.style.display = "block"; // Show the persuasive text
     });
 
-    // Function to handle "Yes" button click (replace content with "Yayyy!" message)
+    // Function to handle "Yes" button click (redirect to next page)
     yesButton.addEventListener("click", function() {
-        // Hide the initial content (GIF and text)
-        initialContent.style.display = "none";
-
-        // Hide the "Yes" and "No" buttons and persuasive text
-        yesButton.style.display = "none";
-        noButton.style.display = "none";
-        persuasiveText.style.display = "none"; // Hide the persuasive text
-
-        // Display the "Yayyy!" GIF and text
-        yesMessage.style.display = "block"; // Show the new content
+        // Redirect to the next page (nextpage.html) when "Yes" is clicked
+        window.location.href = "nextpage.html"; // Navigate to nextpage.html
     });
 });
