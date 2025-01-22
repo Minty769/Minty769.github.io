@@ -2,8 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const yesButton = document.getElementById("yes-button");
     const noButton = document.getElementById("no-button");
     const persuasiveText = document.getElementById("persuasive-text");
+    const yesMessage = document.getElementById("yes-message"); // New area for "Yayyy!" message
 
-    // Array of persuasive messages
+    // Array of persuasive messages for the "No" button
     const persuasiveMessages = [
         "Come on, it's Valentine's Day! You know you want to say Yes! ❤️",
         "You wouldn't want to miss out on the love, would you? 😘",
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Change the text color to a different color
     persuasiveText.style.color = "#FF1493"; // Deep pink color
 
-    // Function to make the "Yes" button grow and change the text
+    // Function to handle "No" button click (persuasive text and button scaling)
     noButton.addEventListener("click", function() {
         yesButton.classList.add("grow"); // Add the "grow" class to grow the "Yes" button
         
@@ -37,5 +38,16 @@ document.addEventListener("DOMContentLoaded", function () {
         messageIndex = (messageIndex + 1) % persuasiveMessages.length; // Cycle through messages
         persuasiveText.textContent = persuasiveMessages[messageIndex]; // Update the persuasive text
         persuasiveText.style.display = "block"; // Show the persuasive text
+    });
+
+    // Function to handle "Yes" button click (show new GIF and text)
+    yesButton.addEventListener("click", function() {
+        // Hide the buttons after clicking "Yes"
+        yesButton.style.display = "none";
+        noButton.style.display = "none";
+        persuasiveText.style.display = "none"; // Hide the persuasive text
+
+        // Display the "Yayyy!" GIF and text
+        yesMessage.style.display = "block";
     });
 });
