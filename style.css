@@ -107,3 +107,14 @@ button {
 #dont-leave-button:hover {
     background-color: #ff4081; /* Light pink on hover */
 }
+
+/* Date-time page styles */
+#availability-form {
+    margin-top: 30px;
+}
+
+#confirmation {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #28a745; /* Green for confirmation */
+}
