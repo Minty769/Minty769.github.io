@@ -78,3 +78,8 @@ button {
     color: #FF1493;
     display: none; /* Initially hidden */
 }
+
+/* Initially hide the first content */
+#initial-content {
+    display: block; /* Initially visible */
+}
