@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let messageIndex = 0; // To keep track of the current message
     let scaleFactor = 1; // Initial scale factor for the Yes button
+    const maxScale = 2.5; // Maximum size for the "Yes" button
 
     // Initially set the first persuasive message
     persuasiveText.textContent = persuasiveMessages[messageIndex];
@@ -27,6 +28,9 @@ document.addEventListener("DOMContentLoaded", function () {
         
         // Increase the scale factor each time the "No" button is clicked
         scaleFactor += 0.2; // Increment the size by 0.2 each time
+        if (scaleFactor > maxScale) {
+            scaleFactor = maxScale; // Ensure it doesn't grow beyond the max scale
+        }
         yesButton.style.transform = `scale(${scaleFactor})`; // Apply the new scale
 
         // Cycle through the persuasive messages
