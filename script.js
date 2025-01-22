@@ -43,5 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
     yesButton.addEventListener("click", function() {
         // Redirect to the next page (nextpage.html) when "Yes" is clicked
         window.location.href = "nextpage.html"; // Navigate to nextpage.html
+
+        document.getElementById('dont-leave-button').addEventListener('click', () => {
+    window.location.href = "formpage.html"; // Redirect to the new page
+    });
     });
 });
