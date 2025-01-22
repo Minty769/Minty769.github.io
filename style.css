@@ -28,3 +28,37 @@ section {
 p {
     color: #880e4f;
 }
+
+/* Style for buttons */
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+#yes-button {
+    background-color: #d81b60;
+    color: white;
+}
+
+#no-button {
+    background-color: #ff4081;
+    color: white;
+}
+
+/* Style when the "Yes" button grows */
+#yes-button.grow {
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+}
+
+/* Styling for persuasive text */
+#persuasive-text {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #880e4f;
+    display: none; /* Initially hidden */
+}
