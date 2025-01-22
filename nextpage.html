@@ -1,23 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Choose Your Availability</title>
-  <link rel="stylesheet" href="nextpage.css">
-</head>
-<body>
-  <h1>Yayyy! Thank you for choosing to stay!</h1>
+/* Next Page Styles */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-color: #f7e1e1;
+}
 
-  <div>
-    <h2>Choose your available date and time</h2>
-    <input type="date" id="available-date" placeholder="Select Date">
-    <input type="time" id="available-time" placeholder="Select Time">
-    <button id="save-button">Save Availability</button>
-  </div>
+h1 {
+  color: #d03c4b;
+}
 
-  <div id="user-data"></div> <!-- Where we will display saved data -->
+h2 {
+  color: #333;
+}
 
-  <script type="module" src="nextpage.js"></script>
-</body>
-</html>
+input[type="date"],
+input[type="time"] {
+  padding: 10px;
+  font-size: 16px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #d03c4b;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #c02b3d;
+}
+
+#user-data {
+  margin-top: 20px;
+  font-size: 18px;
+}
