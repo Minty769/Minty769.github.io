@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Array of persuasive messages for the "No" button
     const persuasiveMessages = [
         "Are you sure?",
-        "Don't do this to me :(,
-        "You're breaking my heart....",
+        "Don't do this to me...,
+        "You're breaking my heart...",
         "I'm gonna cry....",
         "😞"
     ];
