@@ -1,0 +1,30 @@
+/* formpage.css */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f7e1e1;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #d03c4b;
+    color: white;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+iframe {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 640px;
+    height: 580px;
+    border: none;
+}
+
+main {
+    padding: 20px;
+}
