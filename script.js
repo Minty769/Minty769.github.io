@@ -58,8 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Handle "Don't leave" button click
     dontLeaveButton.addEventListener("click", function () {
-        console.log("Don't leave button clicked!");  // Test if this line is reached
-        const basePath = window.location.pathname.split('/').slice(0, -1).join('/');
-        window.location.href = `${basePath}/formpage.html`;  // Redirect to formpage.html
+    console.log("Redirecting to formpage.html"); // Debugging line
+    window.location.href = "formpage.html"; // Adjust path if needed
     });
 });
