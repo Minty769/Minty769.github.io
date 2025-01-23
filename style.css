@@ -5,12 +5,18 @@ body {
     color: #d81b60; /* Text color */
     text-align: center;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ensure full height */
 }
 
 /* Header styling */
 header {
     background-color: #d81b60; /* Dark pink header */
     padding: 20px;
+    width: 100%;
 }
 
 h1 {
@@ -22,6 +28,9 @@ h1 {
 /* Main section styling */
 main {
     padding: 20px;
+    width: 100%;
+    max-width: 800px; /* Limit content width */
+    margin: 0 auto;
 }
 
 /* Content section styling */
@@ -41,7 +50,12 @@ section {
 
 /* Button container styling */
 #button-container {
+    display: flex;
+    flex-direction: row; /* Keep buttons in a row */
+    justify-content: center; /* Center buttons horizontally */
+    align-items: center; /* Align buttons vertically */
     margin-top: 20px;
+    gap: 20px; /* Add space between the buttons */
 }
 
 /* General button styling */
@@ -53,7 +67,6 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin: 10px; /* Added consistent spacing */
 }
 
 /* "Yes" Button - Dark Pink */
@@ -89,10 +102,6 @@ button {
     color: #FF1493;
 }
 
-#new-button-container {
-    margin-top: 20px;
-}
-
 /* Don't Leave Button Styling */
 #dont-leave-button {
     padding: 10px 20px;
@@ -102,6 +111,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 #dont-leave-button:hover {
@@ -113,4 +123,21 @@ iframe {
     border: 2px solid #d81b60; /* Valentine's theme */
     border-radius: 10px;
     margin: 20px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    button {
+        font-size: 1em;
+        padding: 8px 16px;
+    }
+
+    #button-container {
+        flex-direction: column; /* Stack buttons vertically on smaller screens */
+        gap: 15px;
+    }
 }
