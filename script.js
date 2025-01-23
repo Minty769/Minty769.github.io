@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const noButton = document.getElementById("no-button");
     const persuasiveText = document.getElementById("persuasive-text");
 
-    // Persuasive messages
+    // Array of persuasive messages
     const messages = [
         "Come on, it's Valentine's Day! Say Yes! 💖",
         "You know you want to click Yes! ❤️",
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Increase the size of the Yes button
         scaleFactor += 0.2; // Increment size
         if (scaleFactor > maxScale) scaleFactor = maxScale; // Cap size
-        yesButton.style.transform = `scale(${scaleFactor})`;
+        yesButton.style.transform = `scale(${scaleFactor})`; // Apply scale
 
         // Show a new persuasive message
         showPersuasiveMessage();
