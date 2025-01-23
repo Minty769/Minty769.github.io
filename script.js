@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "You wouldn't want to miss out on the love, would you? 😘",
         "Saying Yes is the best way to spread some love! 💕",
         "It's time to make a sweet decision. Say Yes! 🍫",
-        "Your heart knows what to do, just say Yes! 💖"
+        "Your heart knows what to do, just say Yes! "
     ];
 
     let messageIndex = 0; // To keep track of the current message
