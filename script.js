@@ -2,13 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const yesButton = document.getElementById("yes-button");
     const noButton = document.getElementById("no-button");
     const persuasiveText = document.getElementById("persuasive-text");
-    const dontLeaveButton = document.getElementById("dont-leave-button");
-    const dateTimeForm = document.getElementById("date-time-form");
-    const availableDateInput = document.getElementById("available-date");
-    const availableTimeInput = document.getElementById("available-time");
-    const confirmationMessage = document.getElementById("confirmation");
-    const savedDateTime = document.getElementById("saved-date-time");
-
+    const valentineGif = document.getElementById("valentine-gif"); // The img element for the gif
+    
     // Array of persuasive messages for the "No" button
     const persuasiveMessages = [
         "Come on, it's Valentine's Day! You know you want to say Yes! ❤️",
@@ -18,14 +13,25 @@ document.addEventListener("DOMContentLoaded", function () {
         "Your heart knows what to do, just say Yes! 💖"
     ];
 
+    // Array of GIFs that will be swapped each time the "No" button is clicked
+    const gifs = [
+        "images/valentine.gif",
+        "images/love1.gif",
+        "images/love2.gif",
+        "images/love3.gif"
+    ];
+
     let messageIndex = 0; // To keep track of the current message
+    let gifIndex = 0; // To keep track of the current GIF
     let scaleFactor = 1; // Initial scale factor for the Yes button
     const maxScale = 2.5; // Maximum size for the "Yes" button
 
     // Initially set the first persuasive message
     persuasiveText.textContent = persuasiveMessages[messageIndex];
+    persuasiveText.style.color = "#FF1493"; // Deep pink color
+    valentineGif.src = gifs[gifIndex]; // Set the initial gif
 
-    // Handle "No" button click (persuasive text and button scaling)
+    // Function to handle "No" button click (persuasive text, button scaling, and GIF change)
     noButton.addEventListener("click", function() {
         yesButton.classList.add("grow"); // Add the "grow" class to grow the "Yes" button
         
@@ -40,45 +46,15 @@ document.addEventListener("DOMContentLoaded", function () {
         messageIndex = (messageIndex + 1) % persuasiveMessages.length; // Cycle through messages
         persuasiveText.textContent = persuasiveMessages[messageIndex]; // Update the persuasive text
         persuasiveText.style.display = "block"; // Show the persuasive text
+
+        // Cycle through the GIFs
+        gifIndex = (gifIndex + 1) % gifs.length; // Cycle through the GIF array
+        valentineGif.src = gifs[gifIndex]; // Change the GIF source
     });
 
-    // Handle "Yes" button click (redirect to next page)
+    // Function to handle "Yes" button click (redirect to next page)
     yesButton.addEventListener("click", function() {
+        // Redirect to the next page (nextpage.html) when "Yes" is clicked
         window.location.href = "nextpage.html"; // Navigate to nextpage.html
     });
-
-    // Handle "Don't leave yet" button click
-    dontLeaveButton.addEventListener("click", function() {
-        window.location.href = "date-time.html"; // Redirect to date-time page
-    });
-
-    // Handle form submission on the date-time page
-    if (dateTimeForm) {
-        dateTimeForm.addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent the default form submission
-            
-            const selectedDate = availableDateInput.value;
-            const selectedTime = availableTimeInput.value;
-
-            // Store the selected date/time in localStorage
-            localStorage.setItem("userAvailability", JSON.stringify({ date: selectedDate, time: selectedTime }));
-
-            // Show the confirmation message with the saved date/time
-            confirmationMessage.style.display = "block";
-            savedDateTime.textContent = `Date: ${selectedDate}, Time: ${selectedTime}`;
-
-            // Optionally, clear the form after saving
-            dateTimeForm.reset();
-        });
-    }
-
-    // Check if there's saved availability and display it (e.g., on page load)
-    if (window.location.pathname === "/date-time.html") {
-        const savedAvailability = JSON.parse(localStorage.getItem("userAvailability"));
-
-        if (savedAvailability) {
-            confirmationMessage.style.display = "block";
-            savedDateTime.textContent = `Date: ${savedAvailability.date}, Time: ${savedAvailability.time}`;
-        }
-    }
 });
