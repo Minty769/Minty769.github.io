@@ -47,6 +47,7 @@ button {
 /* Yes Button */
 #yes-button {
     background-color: #d81b60;
+    transition: transform 0.3s ease;
 }
 
 #yes-button:hover {
