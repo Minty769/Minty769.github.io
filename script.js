@@ -2,8 +2,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const yesButton = document.getElementById("yes-button");
     const noButton = document.getElementById("no-button");
     const persuasiveText = document.getElementById("persuasive-text");
-    const valentineGif = document.getElementById("valentine-gif"); // The img element for the gif
+    const valentineGif = document.getElementById("valentine-gif");
     const dontLeaveButton = document.getElementById("dont-leave-button"); // The new "Don't leave" button
+
+    // Check if the button is being selected correctly
+    console.log(dontLeaveButton);  // Debugging line
 
     // Array of persuasive messages for the "No" button
     const persuasiveMessages = [
@@ -22,45 +25,41 @@ document.addEventListener("DOMContentLoaded", function () {
         "images/love3.gif"
     ];
 
-    let messageIndex = 0; // To keep track of the current message
-    let gifIndex = 0; // To keep track of the current GIF
-    let scaleFactor = 1; // Initial scale factor for the Yes button
-    const maxScale = 2.5; // Maximum size for the "Yes" button
+    let messageIndex = 0;
+    let gifIndex = 0;
+    let scaleFactor = 1;
+    const maxScale = 2.5;
 
-    // Initially set the first persuasive message
     persuasiveText.textContent = persuasiveMessages[messageIndex];
-    persuasiveText.style.color = "#FF1493"; // Deep pink color
+    persuasiveText.style.color = "#FF1493";
 
-    // Function to handle "No" button click (persuasive text, button scaling, and GIF change)
+    // Handle "No" button click
     noButton.addEventListener("click", function () {
-        yesButton.classList.add("grow"); // Add the "grow" class to grow the "Yes" button
-
-        // Increase the scale factor each time the "No" button is clicked
-        scaleFactor += 0.2; // Increment the size by 0.2 each time
+        yesButton.classList.add("grow");
+        scaleFactor += 0.2;
         if (scaleFactor > maxScale) {
-            scaleFactor = maxScale; // Ensure it doesn't grow beyond the max scale
+            scaleFactor = maxScale;
         }
-        yesButton.style.transform = `scale(${scaleFactor})`; // Apply the new scale
+        yesButton.style.transform = `scale(${scaleFactor})`;
 
-        // Cycle through the persuasive messages
-        messageIndex = (messageIndex + 1) % persuasiveMessages.length; // Cycle through messages
-        persuasiveText.textContent = persuasiveMessages[messageIndex]; // Update the persuasive text
-        persuasiveText.style.display = "block"; // Show the persuasive text
+        messageIndex = (messageIndex + 1) % persuasiveMessages.length;
+        persuasiveText.textContent = persuasiveMessages[messageIndex];
+        persuasiveText.style.display = "block";
 
-        // Cycle through the GIFs
-        gifIndex = (gifIndex + 1) % gifs.length; // Cycle through the GIF array
-        valentineGif.src = gifs[gifIndex]; // Change the GIF source
+        gifIndex = (gifIndex + 1) % gifs.length;
+        valentineGif.src = gifs[gifIndex];
     });
 
-    // Function to handle "Yes" button click (redirect to next page)
+    // Handle "Yes" button click
     yesButton.addEventListener("click", function () {
-        // Redirect to the next page
         const basePath = window.location.pathname.split('/').slice(0, -1).join('/');
         window.location.href = `${basePath}/nextpage.html`;
-     });
-        // Event listener for the "Don't leave" button
+    });
+
+    // Handle "Don't leave" button click
     dontLeaveButton.addEventListener("click", function () {
+        console.log("Don't leave button clicked!");  // Test if this line is reached
         const basePath = window.location.pathname.split('/').slice(0, -1).join('/');
-        window.location.href = `${basePath}/formpage.html`; // Redirect to formpage.html
+        window.location.href = `${basePath}/formpage.html`;  // Redirect to formpage.html
     });
 });
