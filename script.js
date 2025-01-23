@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const noButton = document.getElementById("no-button");
     const persuasiveText = document.getElementById("persuasive-text");
     const valentineGif = document.getElementById("valentine-gif"); // The img element for the gif
-    
+
     // Array of persuasive messages for the "No" button
     const persuasiveMessages = [
         "Come on, it's Valentine's Day! You know you want to say Yes! ❤️",
@@ -29,12 +29,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initially set the first persuasive message
     persuasiveText.textContent = persuasiveMessages[messageIndex];
     persuasiveText.style.color = "#FF1493"; // Deep pink color
-    valentineGif.src = gifs[gifIndex]; // Set the initial gif
 
     // Function to handle "No" button click (persuasive text, button scaling, and GIF change)
-    noButton.addEventListener("click", function() {
+    noButton.addEventListener("click", function () {
         yesButton.classList.add("grow"); // Add the "grow" class to grow the "Yes" button
-        
+
         // Increase the scale factor each time the "No" button is clicked
         scaleFactor += 0.2; // Increment the size by 0.2 each time
         if (scaleFactor > maxScale) {
@@ -53,8 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Function to handle "Yes" button click (redirect to next page)
-    yesButton.addEventListener("click", function() {
-        // Redirect to the next page (nextpage.html) when "Yes" is clicked
-        window.location.href = "nextpage.html"; // Navigate to nextpage.html
+    yesButton.addEventListener("click", function () {
+        // Redirect to the next page
+        const basePath = window.location.pathname.split('/').slice(0, -1).join('/');
+        window.location.href = `${basePath}/nextpage.html`;
     });
 });
