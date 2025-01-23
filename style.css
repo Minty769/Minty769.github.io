@@ -41,7 +41,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     margin: 10px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 /* Yes Button */
@@ -60,4 +60,12 @@ button {
 
 #no-button:hover {
     background-color: #d81b60;
+}
+
+/* Persuasive Text */
+#persuasive-text {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #d81b60;
+    font-weight: bold;
 }
