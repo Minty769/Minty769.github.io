@@ -1,15 +1,14 @@
-/* Body styling */
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #fce4ec; /* Light pink background */
-    color: #d81b60; /* Text color */
+    background-color: #fce4ec;
+    color: #d81b60;
     text-align: center;
     margin: 0;
 }
 
-/* Header styling */
 header {
-    background-color: #d81b60; /* Dark pink header */
+    background-color: #d81b60;
     padding: 20px;
 }
 
@@ -19,12 +18,10 @@ h1 {
     margin: 0;
 }
 
-/* Main section styling */
 main {
     padding: 20px;
 }
 
-/* Content section styling */
 section {
     font-size: 1.5em;
     margin-top: 20px;
@@ -34,56 +31,6 @@ section {
     justify-content: center;
 }
 
-/* Initial content styling */
-#initial-content {
-    margin-top: 30px;
-}
-
-/* Button container styling */
-#button-container {
-    margin-top: 20px;
-}
-
-/* General button styling */
-button {
-    padding: 10px 20px;
-    font-size: 1.2em;
-    color: white; /* Text color */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-/* "Yes" Button - Dark Pink */
-#yes-button {
-    background-color: #d81b60; /* Dark pink */
-}
-
-/* "Yes" Button Hover - Light Pink */
-#yes-button:hover {
-    background-color: #ff4081; /* Light pink */
-}
-
-/* "No" Button - Light Pink */
-#no-button {
-    background-color: #ff4081; /* Light pink */
-}
-
-/* "No" Button Hover - Dark Pink */
-#no-button:hover {
-    background-color: #d81b60; /* Dark pink */
-}
-
-/* Persuasive text styling */
-#persuasive-text {
-    margin-top: 20px;
-    font-size: 1.2em;
-    color: #FF1493; /* Deep pink color */
-    display: none; /* Initially hidden */
-}
-
-/* Styling for the "Yes" message page (nextpage.html) */
 #yes-message {
     margin-top: 30px;
     font-size: 1.5em;
@@ -97,7 +44,7 @@ button {
 #dont-leave-button {
     padding: 10px 20px;
     font-size: 1.2em;
-    background-color: #d81b60; /* Dark pink button */
+    background-color: #d81b60;
     color: white;
     border: none;
     border-radius: 5px;
@@ -105,5 +52,5 @@ button {
 }
 
 #dont-leave-button:hover {
-    background-color: #ff4081; /* Light pink on hover */
+    background-color: #ff4081;
 }
