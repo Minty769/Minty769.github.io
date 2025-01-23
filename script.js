@@ -2,22 +2,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const yesButton = document.getElementById("yes-button");
     const noButton = document.getElementById("no-button");
     const persuasiveText = document.getElementById("persuasive-text");
-    const valentineGif = document.getElementById("valentine-gif"); // The img element for the gif
     
     // Array of persuasive messages for the "No" button
     const persuasiveMessages = [
-        "Are you sure?",
-        "Don't do this to me :(,
-        "You're breaking my heart....",
-        "I'm gonna cry....",
-        "😞"
-    ];
-
-    const gifs = [
-        "images/valentine.gif",
-        "images/love1.gif",
-        "images/love2.gif",
-        "images/love3.gif"
+        "Come on, it's Valentine's Day! You know you want to say Yes! ❤️",
+        "You wouldn't want to miss out on the love, would you? 😘",
+        "Saying Yes is the best way to spread some love! 💕",
+        "It's time to make a sweet decision. Say Yes! 🍫",
+        "Your heart knows what to do, just say Yes! 💖"
     ];
 
     let messageIndex = 0; // To keep track of the current message
@@ -29,8 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Change the text color to a different color
     persuasiveText.style.color = "#FF1493"; // Deep pink color
-
-     valentineGif.src = gifs[gifIndex]; // Set the initial gif
 
     // Function to handle "No" button click (persuasive text and button scaling)
     noButton.addEventListener("click", function() {
@@ -54,15 +44,4 @@ document.addEventListener("DOMContentLoaded", function () {
         // Redirect to the next page (nextpage.html) when "Yes" is clicked
         window.location.href = "nextpage.html"; // Navigate to nextpage.html
     });
-});
-
-// Handle "Don't leave yet!" button on the next page
-document.addEventListener("DOMContentLoaded", function () {
-    const dontLeaveButton = document.getElementById('dont-leave-button');
-    
-    if (dontLeaveButton) {
-        dontLeaveButton.addEventListener('click', function() {
-            window.location.href = "formpage.html"; // Redirect to the form page
-        });
-    }
 });
