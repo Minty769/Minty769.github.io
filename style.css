@@ -1,6 +1,6 @@
 /* Body styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif; /* Added fallback */
     background-color: #fce4ec; /* Light pink background */
     color: #d81b60; /* Text color */
     text-align: center;
@@ -53,6 +53,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin: 10px; /* Added consistent spacing */
 }
 
 /* "Yes" Button - Dark Pink */
@@ -60,7 +61,6 @@ button {
     background-color: #d81b60; /* Dark pink */
 }
 
-/* "Yes" Button Hover - Light Pink */
 #yes-button:hover {
     background-color: #ff4081; /* Light pink */
 }
@@ -70,7 +70,6 @@ button {
     background-color: #ff4081; /* Light pink */
 }
 
-/* "No" Button Hover - Dark Pink */
 #no-button:hover {
     background-color: #d81b60; /* Dark pink */
 }
@@ -94,6 +93,7 @@ button {
     margin-top: 20px;
 }
 
+/* Don't Leave Button Styling */
 #dont-leave-button {
     padding: 10px 20px;
     font-size: 1.2em;
@@ -106,4 +106,11 @@ button {
 
 #dont-leave-button:hover {
     background-color: #ff4081; /* Light pink on hover */
+}
+
+/* iFrame Styling for formpage.html */
+iframe {
+    border: 2px solid #d81b60; /* Valentine's theme */
+    border-radius: 10px;
+    margin: 20px 0;
 }
