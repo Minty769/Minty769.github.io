@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "nextpage.html"; // Navigate to nextpage.html
     });
 
+     console.log("Don't leave button clicked!");
     // Handle "Don't leave" button click
     dontLeaveButton.addEventListener("click", function () {
         console.log("Don't leave button clicked!");  // Test if this line is reached
