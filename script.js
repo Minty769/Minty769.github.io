@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const noButton = document.getElementById("no-button");
     const persuasiveText = document.getElementById("persuasive-text");
     const valentineGif = document.getElementById("valentine-gif"); // The img element for the gif
+    const dontLeaveButton = document.getElementById("dont-leave-button"); // The new "Don't leave" button
 
     // Array of persuasive messages for the "No" button
     const persuasiveMessages = [
@@ -56,5 +57,10 @@ document.addEventListener("DOMContentLoaded", function () {
         // Redirect to the next page
         const basePath = window.location.pathname.split('/').slice(0, -1).join('/');
         window.location.href = `${basePath}/nextpage.html`;
+
+        // Event listener for the "Don't leave" button
+    dontLeaveButton.addEventListener("click", function () {
+        const basePath = window.location.pathname.split('/').slice(0, -1).join('/');
+        window.location.href = `${basePath}/formpage.html`; // Redirect to formpage.html
     });
 });
