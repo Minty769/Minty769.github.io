@@ -3,32 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thanks for Saying Yes!</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Yayyy! You chose YES!</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Thank You for Saying Yes! ❤️</h1>
+        <h1>Happy Valentine's Day!</h1>
     </header>
     <main>
         <section>
             <div id="yes-message">
-                We're so happy you decided to celebrate Valentine's Day with us! 🎉
+                <img src="images/happy.gif" alt="Happy Valentine's gif" width="300">
+                <p>Yayyy! You chose YES! ❤️</p>
+            </div>
+
+            <div id="new-button-container">
+                <button id="dont-leave-button">Don't leave yet! Click here</button>
             </div>
         </section>
-        <div id="new-button-container">
-            <button id="dont-leave-button">Don't Leave Yet!</button>
-        </div>
     </main>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const dontLeaveButton = document.getElementById("dont-leave-button");
-
-            dontLeaveButton.addEventListener("click", function () {
-                console.log("Redirecting to formpage.html");
-                window.location.href = "formpage.html"; // Adjust path if needed
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
