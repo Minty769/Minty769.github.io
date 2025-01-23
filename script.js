@@ -44,4 +44,11 @@ document.addEventListener("DOMContentLoaded", function () {
         // Redirect to the next page (nextpage.html) when "Yes" is clicked
         window.location.href = "nextpage.html"; // Navigate to nextpage.html
     });
+
+    // Handle "Don't leave" button click
+    dontLeaveButton.addEventListener("click", function () {
+        console.log("Don't leave button clicked!");  // Test if this line is reached
+        const basePath = window.location.pathname.split('/').slice(0, -1).join('/');
+        window.location.href = `${basePath}/formpage.html`;  // Redirect to formpage.html
+    });
 });
