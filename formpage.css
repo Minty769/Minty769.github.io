@@ -1,30 +1,21 @@
-/* formpage.css */
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f7e1e1;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    background-color: #d03c4b;
-    color: white;
-    padding: 20px;
-}
-
-h1 {
-    font-size: 24px;
-}
-
-iframe {
-    margin-top: 30px;
-    width: 100%;
-    max-width: 640px;
-    height: 580px;
-    border: none;
-}
-
-main {
-    padding: 20px;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fill out your availability</title>
+    <link rel="stylesheet" href="formpage.css">
+</head>
+<body>
+    <header>
+        <h1>Don't Leave Yet! Please fill out your availability ❤️</h1>
+    </header>
+    <main>
+        <section>
+            <!-- Embed Google Form -->
+           <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfeQOvPBqT9g2uNRq0B26awyiYIfMxnzDPrEptzThJmeLWQJg/viewform?embedded=true" width="640" height="760" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        </section>
+    </main>
+    <script src="formpage.js"></script>
+</body>
+</html>
