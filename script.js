@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to handle the "Yes" button click
     yesButton.addEventListener("click", function () {
-        alert("Yay! You said YES! 💖");
+        // Redirect to the next page (you can replace this with the actual link)
+        window.location.href = "nextpage.html";
     });
 });
