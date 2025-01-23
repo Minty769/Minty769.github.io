@@ -18,10 +18,16 @@
             </div>
 
             <div id="new-button-container">
+                <!-- Redirects to formpage.html -->
                 <button id="dont-leave-button">Don't leave yet! Click here</button>
             </div>
         </section>
     </main>
-    <script src="script.js"></script>
+    <script>
+        // Handle button click to redirect to formpage.html
+        document.getElementById("dont-leave-button").addEventListener("click", function () {
+            window.location.href = "formpage.html";
+        });
+    </script>
 </body>
 </html>
