@@ -5,11 +5,11 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // Array of persuasive messages for the "No" button
     const persuasiveMessages = [
-        "Come on, it's Valentine's Day! You know you want to say Yes! ❤️",
-        "You wouldn't want to miss out on the love, would you? 😘",
-        "Saying Yes is the best way to spread some love! 💕",
-        "It's time to make a sweet decision. Say Yes! 🍫",
-        "Your heart knows what to do, just say Yes! "
+        "Think about it....❤️",
+        "You wouldn't want to hurt me right.....",
+        "I think you missed",
+        "You won't regret saying yes....",
+        "You are breaking my heart..."
     ];
 
     let messageIndex = 0; // To keep track of the current message
