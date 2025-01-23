@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (dontLeaveButton) {
         dontLeaveButton.addEventListener("click", function () {
             // Redirect to formpage.html
-            window.location.href = "formpage.html"; // Update path if needed
+            window.location.href = "nextpage.html"; // Update path if needed
         });
     }
 });
