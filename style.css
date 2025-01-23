@@ -1,72 +1,120 @@
-/* General Page Styling */
+/* Body styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #ffe4e1; /* Light pink */
-    color: #d81b60; /* Valentine pink */
+    background-color: #fce4ec; /* Light pink background */
+    color: #d81b60; /* Text color */
     text-align: center;
     margin: 0;
-    padding: 0;
 }
 
-/* Header Styling */
+/* Header styling */
 header {
-    background-color: #d81b60;
-    color: white;
+    background-color: #d81b60; /* Dark pink header */
     padding: 20px;
-    font-size: 2.5em;
 }
 
-/* Center Gif Styling */
-#gif-container {
-    margin: 30px auto;
+h1 {
+    color: white;
+    font-size: 3em;
+    margin: 0;
 }
 
-#valentine-gif {
-    width: 300px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+/* Main section styling */
+main {
+    padding: 20px;
 }
 
-/* Button Container */
+/* Content section styling */
+section {
+    font-size: 1.5em;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Initial content styling */
+#initial-content {
+    margin-top: 30px;
+}
+
+/* Button container styling */
 #button-container {
     margin-top: 20px;
 }
 
-/* Buttons Styling */
+/* General button styling */
 button {
-    padding: 15px 30px;
+    padding: 10px 20px;
     font-size: 1.2em;
+    color: white; /* Text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* "Yes" Button - Dark Pink */
+#yes-button {
+    background-color: #d81b60; /* Dark pink */
+}
+
+/* "Yes" Button Hover - Light Pink */
+#yes-button:hover {
+    background-color: #ff4081; /* Light pink */
+}
+
+/* "No" Button - Light Pink */
+#no-button {
+    background-color: #ff4081; /* Light pink */
+}
+
+/* "No" Button Hover - Dark Pink */
+#no-button:hover {
+    background-color: #d81b60; /* Dark pink */
+}
+
+/* Persuasive text styling */
+#persuasive-text {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #FF1493; /* Deep pink color */
+    display: none; /* Initially hidden */
+}
+
+/* Styling for the "Yes" message page (nextpage.html) */
+#yes-message {
+    margin-top: 30px;
+    font-size: 1.5em;
+    color: #FF1493;
+}
+
+#new-button-container {
+    margin-top: 20px;
+}
+
+#dont-leave-button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #d81b60; /* Dark pink button */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin: 10px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Yes Button */
-#yes-button {
-    background-color: #d81b60;
-    transition: transform 0.3s ease;
+#dont-leave-button:hover {
+    background-color: #ff4081; /* Light pink on hover */
 }
 
-#yes-button:hover {
-    background-color: #ff4081;
+/* Date-time page styles */
+#availability-form {
+    margin-top: 30px;
 }
 
-/* No Button */
-#no-button {
-    background-color: #ff4081;
-}
-
-#no-button:hover {
-    background-color: #d81b60;
-}
-
-/* Persuasive Text */
-#persuasive-text {
+#confirmation {
     margin-top: 20px;
     font-size: 1.2em;
-    color: #d81b60;
-    font-weight: bold;
+    color: #28a745; /* Green for confirmation */
 }
