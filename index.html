@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Valentine Letter</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Valentine Website</title>
 
   <style>
     body {
       margin: 0;
       font-family: "Courier New", monospace;
       background: #ffe6f2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       height: 100vh;
       overflow: hidden;
     }
 
-    /* PAGE CONTAINER */
+    /* PAGE SYSTEM */
     .page {
       display: none;
       width: 100%;
@@ -25,13 +22,16 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      text-align: center;
+      position: relative;
     }
 
     .active {
       display: flex;
     }
 
-    /* PIXEL LETTER */
+    /* ---------------- PAGE 1 LETTER ---------------- */
+
     .letter {
       width: 220px;
       height: 160px;
@@ -48,7 +48,6 @@
       transform: scale(1.05);
     }
 
-    /* LETTER FLAP */
     .flap {
       position: absolute;
       top: 0;
@@ -60,7 +59,6 @@
       transition: 0.5s;
     }
 
-    /* TEXT ON FRONT */
     .to-text {
       position: absolute;
       bottom: 25px;
@@ -71,13 +69,11 @@
       font-weight: bold;
     }
 
-    /* OPEN LETTER STATE */
     .opened .flap {
       transform: rotateX(180deg);
       transform-origin: top;
     }
 
-    /* MESSAGE BOX */
     .message-box {
       display: none;
       margin-top: 30px;
@@ -86,12 +82,10 @@
       background: white;
       border: 4px solid #ff69b4;
       border-radius: 15px;
-      text-align: center;
       font-size: 18px;
       color: #ff4fa3;
     }
 
-    /* NEXT BUTTON */
     .next-btn {
       display: none;
       position: absolute;
@@ -103,67 +97,233 @@
       background: #ff69b4;
       color: white;
       cursor: pointer;
-      transition: 0.3s;
     }
 
     .next-btn:hover {
       background: #ff3c9e;
+    }
+
+    /* ---------------- PAGE 2 VALENTINE QUESTION ---------------- */
+
+    h1 {
+      color: #ff4fa3;
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    .capy-img {
+      width: 280px;
+      border-radius: 20px;
+      border: 4px solid #ff69b4;
+      background: white;
+      padding: 10px;
+      margin-bottom: 25px;
+    }
+
+    .btn-container {
+      display: flex;
+      gap: 30px;
+      margin-top: 10px;
+      position: relative;
+    }
+
+    button {
+      padding: 14px 35px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .yes-btn {
+      background: #ff69b4;
+      color: white;
+    }
+
+    .yes-btn:hover {
+      background: #ff3c9e;
+    }
+
+    .no-btn {
+      background: white;
+      border: 3px solid #ff69b4;
+      color: #ff4fa3;
+      position: absolute;
+    }
+
+    /* Message under image */
+    .sad-message {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #ff4fa3;
+      min-height: 30px;
+    }
+
+    /* ---------------- HEART POPPING ---------------- */
+
+    .heart {
+      position: absolute;
+      font-size: 28px;
+      animation: floatUp 1.5s ease forwards;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-150px) scale(1.8);
+      }
     }
   </style>
 </head>
 
 <body>
 
+  <!-- 🎵 BACKGROUND MUSIC -->
+  <audio id="bgMusic" loop>
+    <source src="music/romantic.mp3" type="audio/mpeg">
+  </audio>
+
   <!-- PAGE 1 -->
   <div class="page active" id="page1">
-
-    <!-- Letter -->
     <div class="letter" id="letter">
       <div class="flap"></div>
       <div class="to-text">To Trinh 💌</div>
     </div>
 
-    <!-- Message -->
     <div class="message-box" id="messageBox">
-      <!-- Leave blank for now -->
       Your message will go here 💗
     </div>
 
-    <!-- Next Button -->
     <button class="next-btn" id="nextBtn">NEXT ➜</button>
   </div>
 
-  <!-- PAGE 2 (Blank Placeholder) -->
+  <!-- PAGE 2 -->
   <div class="page" id="page2">
-    <h1 style="color:#ff4fa3;">Page 2 (Blank for now)</h1>
+    <h1>Will you be my Valentine’s? 💘</h1>
+
+    <img
+      src="images/cute-illustration-of-capybara-animals-perfect-for-valentine-s-day-cards-invitations-capybara-with-hearts-in-hands-vector.jpg"
+      class="capy-img"
+      alt="Capybara Valentine"
+    />
+
+    <div class="btn-container" id="btnContainer">
+      <button class="yes-btn" id="yesBtn">Yes 💖</button>
+      <button class="no-btn" id="noBtn">No 💔</button>
+    </div>
+
+    <div class="sad-message" id="sadMessage"></div>
+  </div>
+
+  <!-- PAGE 3 (Blank Placeholder) -->
+  <div class="page" id="page3">
+    <h1 style="color:#ff4fa3;">Page 3 (Blank for now 💗)</h1>
   </div>
 
 
   <script>
+    /* ---------- MUSIC SETUP ---------- */
+    const bgMusic = document.getElementById("bgMusic");
+
+    function startMusic() {
+      bgMusic.play().catch(() => {});
+      document.removeEventListener("click", startMusic);
+    }
+
+    // Music starts after first click anywhere
+    document.addEventListener("click", startMusic);
+
+
+    /* ---------- PAGE 1 LETTER ---------- */
     const letter = document.getElementById("letter");
     const messageBox = document.getElementById("messageBox");
     const nextBtn = document.getElementById("nextBtn");
 
     let opened = false;
 
-    // Click to open letter
     letter.addEventListener("click", () => {
       if (!opened) {
         opened = true;
         letter.classList.add("opened");
-
-        // Show message + next button
         messageBox.style.display = "block";
         nextBtn.style.display = "block";
       }
     });
 
-    // Next button moves to Page 2
     nextBtn.addEventListener("click", () => {
       document.getElementById("page1").classList.remove("active");
       document.getElementById("page2").classList.add("active");
+    });
+
+
+    /* ---------- PAGE 2 BUTTONS ---------- */
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const sadMessage = document.getElementById("sadMessage");
+
+    const messages = [
+      "I think you clicked the wrong one 😭",
+      "You’re breaking my heart… 💔",
+      "No isn’t an option bestie 😤",
+      "Try again... but choose wisely 👀",
+      "Capybara is disappointed 🥺",
+      "That button does NOT work 😅",
+      "Please say yes 💖"
+    ];
+
+    let msgIndex = 0;
+
+    // Speed factor increases each time
+    let speed = 1;
+
+    function moveNoButton() {
+      speed += 0.3; // gets faster every time
+
+      const x = (Math.random() * 250 - 125) * speed;
+      const y = (Math.random() * 150 - 75) * speed;
+
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+      sadMessage.textContent = messages[msgIndex];
+      msgIndex = (msgIndex + 1) % messages.length;
+    }
+
+    noBtn.addEventListener("mouseover", moveNoButton);
+    noBtn.addEventListener("click", moveNoButton);
+
+
+    /* ---------- HEART POPPING ON YES ---------- */
+    function popHearts() {
+      for (let i = 0; i < 10; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.textContent = "💖";
+
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.top = Math.random() * window.innerHeight + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 1500);
+      }
+    }
+
+    yesBtn.addEventListener("click", () => {
+      popHearts();
+
+      setTimeout(() => {
+        document.getElementById("page2").classList.remove("active");
+        document.getElementById("page3").classList.add("active");
+      }, 1200);
     });
   </script>
 
 </body>
 </html>
+
