@@ -159,35 +159,10 @@
       color: #ff4fa3;
       min-height: 30px;
     }
-
-    /* ---------------- HEART POPPING ---------------- */
-
-    .heart {
-      position: absolute;
-      font-size: 28px;
-      animation: floatUp 1.5s ease forwards;
-      pointer-events: none;
-    }
-
-    @keyframes floatUp {
-      0% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-      100% {
-        opacity: 0;
-        transform: translateY(-150px) scale(1.8);
-      }
-    }
   </style>
 </head>
 
 <body>
-
-  <!-- 🎵 BACKGROUND MUSIC -->
-  <audio id="bgMusic" loop>
-    <source src="music/romantic.mp3" type="audio/mpeg">
-  </audio>
 
   <!-- PAGE 1 -->
   <div class="page active" id="page1">
@@ -228,18 +203,6 @@
 
 
   <script>
-    /* ---------- MUSIC SETUP ---------- */
-    const bgMusic = document.getElementById("bgMusic");
-
-    function startMusic() {
-      bgMusic.play().catch(() => {});
-      document.removeEventListener("click", startMusic);
-    }
-
-    // Music starts after first click anywhere
-    document.addEventListener("click", startMusic);
-
-
     /* ---------- PAGE 1 LETTER ---------- */
     const letter = document.getElementById("letter");
     const messageBox = document.getElementById("messageBox");
@@ -279,51 +242,28 @@
 
     let msgIndex = 0;
 
-    // Speed factor increases each time
-    let speed = 1;
-
+    // Move NO button randomly
     function moveNoButton() {
-      speed += 0.3; // gets faster every time
-
-      const x = (Math.random() * 250 - 125) * speed;
-      const y = (Math.random() * 150 - 75) * speed;
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 120 - 60;
 
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
 
+      // Change message
       sadMessage.textContent = messages[msgIndex];
       msgIndex = (msgIndex + 1) % messages.length;
     }
 
+    // Trigger movement when hovering or trying to click
     noBtn.addEventListener("mouseover", moveNoButton);
     noBtn.addEventListener("click", moveNoButton);
 
-
-    /* ---------- HEART POPPING ON YES ---------- */
-    function popHearts() {
-      for (let i = 0; i < 10; i++) {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.textContent = "💖";
-
-        heart.style.left = Math.random() * window.innerWidth + "px";
-        heart.style.top = Math.random() * window.innerHeight + "px";
-
-        document.body.appendChild(heart);
-
-        setTimeout(() => heart.remove(), 1500);
-      }
-    }
-
+    // YES button goes to Page 3
     yesBtn.addEventListener("click", () => {
-      popHearts();
-
-      setTimeout(() => {
-        document.getElementById("page2").classList.remove("active");
-        document.getElementById("page3").classList.add("active");
-      }, 1200);
+      document.getElementById("page2").classList.remove("active");
+      document.getElementById("page3").classList.add("active");
     });
   </script>
 
 </body>
 </html>
-
