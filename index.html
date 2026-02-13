@@ -154,4 +154,248 @@
       background: white;
       border: 3px solid #ff003c;
       color: #ff003c;
-      position
+      position: relative;
+    }
+
+    .sad-message {
+      margin-top: 18px;
+      font-size: 18px;
+      color: white;
+      min-height: 30px;
+    }
+
+    /* ---------------- PAGE 3 ---------------- */
+
+    .gif-img {
+      width: min(260px, 80vw);
+      border-radius: 20px;
+      box-shadow: 0 0 25px white;
+      z-index: 2;
+    }
+
+    /* HEART FIREWORKS */
+    .firework-heart {
+      position: absolute;
+      font-size: 26px;
+      animation: explode 2s ease-out forwards;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes explode {
+      0% {
+        opacity: 1;
+        transform: translate(0,0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(var(--x), var(--y)) scale(2);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 🎵 MUSIC FILES -->
+  <audio id="music12" loop>
+    <source src="music/soft.mp3" type="audio/mpeg">
+  </audio>
+
+  <audio id="music3" loop>
+    <source src="music/romantic.mp3" type="audio/mpeg">
+  </audio>
+
+
+  <!-- PAGE 1 -->
+  <div class="page active" id="page1">
+    <div class="letter" id="letter">
+      <div class="flap"></div>
+      <div class="seal">💌</div>
+      <div class="to-text">To Trinh</div>
+    </div>
+
+    <div class="message-box" id="messageBox">
+      Hi Trinh 💖<br><br>
+      You’ve become my favorite part of every day.<br><br>
+      Even from far away, you make life feel warmer and happier.<br><br>
+      So I wanted to ask you something…
+    </div>
+
+    <button class="next-btn" id="nextBtn">NEXT ➜</button>
+  </div>
+
+
+  <!-- PAGE 2 -->
+  <div class="page" id="page2">
+    <h1>Will you be my Valentine’s? 💘</h1>
+
+    <img src="images/cute-illustration-of-capybara-animals-perfect-for-valentine-s-day-cards-invitations-capybara-with-hearts-in-hands-vector.jpg"
+         class="capy-img">
+
+    <div class="btn-container">
+      <button class="yes-btn" id="yesBtn">Yes 💖</button>
+      <button class="no-btn" id="noBtn">No 💔</button>
+    </div>
+
+    <div class="sad-message" id="sadMessage"></div>
+  </div>
+
+
+  <!-- PAGE 3 -->
+  <div class="page" id="page3">
+    <h1>Thank you so much 💗</h1>
+
+    <img src="images/happy.gif" class="gif-img">
+
+    <p style="color:white; font-size:20px; margin-top:15px; z-index:2;">
+      Thank you for saying yes 💖<br>
+      We’ll celebrate properly when you’re back.<br>
+      This is my way of holding your hand from far away.
+    </p>
+  </div>
+
+
+  <script>
+    /* ===========================================================
+       🎵 MUSIC SETTINGS — TINKER HERE!
+       =========================================================== */
+
+    let volume12 = 0.015;  // Music for Pages 1–2 (very soft)
+    let volume3  = 0.010;  // Music for Page 3 (even softer)
+
+    let fadeSpeed = 0.002; // Smaller = slower + smoother fade
+
+    /* =========================================================== */
+
+    const music12 = document.getElementById("music12");
+    const music3  = document.getElementById("music3");
+
+    // Start music after first click (browser autoplay rule)
+    document.addEventListener("click", () => {
+      if (music12.paused) {
+        music12.volume = volume12;
+        music12.play();
+      }
+    }, { once: true });
+
+
+    /* PAGE SWITCH */
+    function pageSwitch(from, to) {
+      document.getElementById(from).classList.remove("active");
+      document.getElementById(to).classList.add("active");
+    }
+
+    /* PAGE 1 */
+    const letter = document.getElementById("letter");
+    const messageBox = document.getElementById("messageBox");
+    const nextBtn = document.getElementById("nextBtn");
+
+    letter.addEventListener("click", () => {
+      letter.classList.add("opened");
+      messageBox.style.display = "block";
+      nextBtn.style.display = "block";
+    });
+
+    nextBtn.addEventListener("click", () => {
+      pageSwitch("page1", "page2");
+    });
+
+
+    /* PAGE 2 NO BUTTON */
+    const noBtn = document.getElementById("noBtn");
+    const sadMessage = document.getElementById("sadMessage");
+
+    const messages = [
+      "I think you clicked the wrong one 😭",
+      "Aww don’t say no 💔",
+      "That button isn’t working 😤",
+      "Capybara believes in you 🥺",
+      "Just press yes 💖"
+    ];
+
+    let msgIndex = 0;
+    let speed = 1;
+
+    function moveNoButton() {
+      speed += 0.12;
+
+      const x = (Math.random() * 180 - 90) * speed;
+      const y = (Math.random() * 120 - 60) * speed;
+
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+      sadMessage.textContent = messages[msgIndex];
+      msgIndex = (msgIndex + 1) % messages.length;
+    }
+
+    noBtn.addEventListener("mouseover", moveNoButton);
+
+
+    /* YES BUTTON */
+    const yesBtn = document.getElementById("yesBtn");
+
+    yesBtn.addEventListener("click", () => {
+      pageSwitch("page2", "page3");
+
+      fadeOut(music12, () => {
+        fadeIn(music3, volume3);
+      });
+
+      startFireworks();
+    });
+
+
+    /* MUSIC FADE FUNCTIONS */
+    function fadeOut(audio, callback) {
+      let fade = setInterval(() => {
+        if (audio.volume > 0.001) {
+          audio.volume -= fadeSpeed;
+        } else {
+          clearInterval(fade);
+          audio.pause();
+          callback();
+        }
+      }, 30);
+    }
+
+    function fadeIn(audio, targetVol) {
+      audio.volume = 0;
+      audio.play();
+
+      let fade = setInterval(() => {
+        if (audio.volume < targetVol) {
+          audio.volume += fadeSpeed;
+        } else {
+          clearInterval(fade);
+        }
+      }, 30);
+    }
+
+
+    /* HEART FIREWORKS BEHIND GIF */
+    function startFireworks() {
+      const page3 = document.getElementById("page3");
+
+      setInterval(() => {
+        for (let i = 0; i < 5; i++) {
+          const heart = document.createElement("div");
+          heart.classList.add("firework-heart");
+          heart.textContent = "💖";
+
+          heart.style.left = "50%";
+          heart.style.top = "55%";
+
+          heart.style.setProperty("--x", `${Math.random()*320 - 160}px`);
+          heart.style.setProperty("--y", `${Math.random()*320 - 160}px`);
+
+          page3.appendChild(heart);
+
+          setTimeout(() => heart.remove(), 2000);
+        }
+      }, 800);
+    }
+  </script>
+
+</body>
+</html>
