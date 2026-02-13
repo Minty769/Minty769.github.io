@@ -14,40 +14,37 @@
       overflow: hidden;
     }
 
-    /* MOBILE FRIENDLY CENTERING */
+    /* ===========================================================
+       PAGE FADE SYSTEM (SMOOTH)
+       =========================================================== */
+
     .page {
-      display: none;
-      width: 100%;
-      height: 100%;
+      position: absolute;
+      inset: 0;
+      display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       text-align: center;
-      position: relative;
       padding: 20px;
       box-sizing: border-box;
+
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 1.4s ease;
     }
 
-     /* PAGE FADE EFFECT */
-.page {
-  opacity: 0;
-  transition: opacity 1.2s ease;
-}
+    .page.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
 
-.page.active {
-  display: flex;
-  opacity: 1;
-}
-
-/* Page 3 message starts hidden */
-#finalMessage {
-  opacity: 0;
-  transition: opacity 2s ease;
-}
-
-
-    .active {
-      display: flex;
+    /* Page 3 message starts hidden */
+    #finalMessage {
+      opacity: 0;
+      transition: opacity 2.2s ease;
     }
 
     h1 {
@@ -57,7 +54,9 @@
       margin-bottom: 20px;
     }
 
-    /* ---------------- PAGE 1 LETTER ---------------- */
+    /* ===========================================================
+       PAGE 1 LETTER (SMOOTHER OPENING)
+       =========================================================== */
 
     .letter {
       width: min(260px, 85vw);
@@ -68,11 +67,12 @@
       border-radius: 20px;
       cursor: pointer;
       position: relative;
-      transition: transform 0.3s ease;
+      transition: transform 0.4s ease;
+      perspective: 900px;
     }
 
     .letter:hover {
-      transform: scale(1.08);
+      transform: scale(1.06);
     }
 
     .flap {
@@ -83,7 +83,12 @@
       height: 55%;
       background: #ff85a1;
       clip-path: polygon(0 0, 100% 0, 50% 100%);
-      transition: 0.6s;
+      transform-origin: top;
+      transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .opened .flap {
+      transform: rotateX(180deg);
     }
 
     .seal {
@@ -92,6 +97,11 @@
       left: 50%;
       transform: translateX(-50%);
       font-size: 34px;
+      transition: opacity 0.6s ease;
+    }
+
+    .opened .seal {
+      opacity: 0;
     }
 
     .to-text {
@@ -105,11 +115,6 @@
       text-shadow: 0 0 10px #ffd1dc;
     }
 
-    .opened .flap {
-      transform: rotateX(180deg);
-      transform-origin: top;
-    }
-
     .message-box {
       display: none;
       margin-top: 30px;
@@ -121,6 +126,12 @@
       font-size: 18px;
       color: #ff003c;
       line-height: 1.4;
+      animation: fadeInMsg 1.2s ease forwards;
+    }
+
+    @keyframes fadeInMsg {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     .next-btn {
@@ -133,9 +144,16 @@
       background: #ff003c;
       color: white;
       cursor: pointer;
+      transition: transform 0.25s ease;
     }
 
-    /* ---------------- PAGE 2 ---------------- */
+    .next-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* ===========================================================
+       PAGE 2
+       =========================================================== */
 
     .capy-img {
       width: min(290px, 85vw);
@@ -182,7 +200,9 @@
       min-height: 30px;
     }
 
-    /* ---------------- PAGE 3 ---------------- */
+    /* ===========================================================
+       PAGE 3
+       =========================================================== */
 
     .gif-img {
       width: min(260px, 80vw);
@@ -191,7 +211,6 @@
       z-index: 2;
     }
 
-    /* HEART FIREWORKS */
     .firework-heart {
       position: absolute;
       font-size: 26px;
@@ -224,7 +243,6 @@
     <source src="music/romantic.mp3" type="audio/mpeg">
   </audio>
 
-
   <!-- PAGE 1 -->
   <div class="page active" id="page1">
     <div class="letter" id="letter">
@@ -244,7 +262,6 @@
     <button class="next-btn" id="nextBtn">NEXT ➜</button>
   </div>
 
-
   <!-- PAGE 2 -->
   <div class="page" id="page2">
     <h1>Will you be my Valentine’s? 💘</h1>
@@ -254,184 +271,4 @@
 
     <div class="btn-container">
       <button class="yes-btn" id="yesBtn">Yes 💖</button>
-      <button class="no-btn" id="noBtn">No 💔</button>
-    </div>
-
-    <div class="sad-message" id="sadMessage"></div>
-  </div>
-
-
-  <!-- PAGE 3 -->
-  <div class="page" id="page3">
-    <h1>Thank you so much 💗</h1>
-
-    <img src="images/happy.gif" class="gif-img">
-
-    <p id="finalMessage"
-      style="color:white; font-size:20px; margin-top:15px; z-index:2;">
-      Thank you for saying yes<br>
-      We’ll celebrate properly when you’re back.<br>
-      But for now, this is my way of holding your hand from far away. 💖
-    </p>
-  </div>
-
-
-  <script>
-    /* ===========================================================
-       🎵 MUSIC SETTINGS — TINKER HERE!
-       =========================================================== */
-
-    let volume12 = 0.015;  // Music for Pages 1–2 (very soft)
-    let volume3  = 0.010;  // Music for Page 3 (even softer)
-
-    let fadeSpeed = 0.002; // Smaller = slower + smoother fade
-
-    /* =========================================================== */
-
-    const music12 = document.getElementById("music12");
-    const music3  = document.getElementById("music3");
-
-    // Start music after first click (browser autoplay rule)
-    document.addEventListener("click", () => {
-      if (music12.paused) {
-        music12.volume = volume12;
-        music12.play();
-      }
-    }, { once: true });
-
-
-    /* PAGE SWITCH */
-    function pageSwitch(from, to) {
-  const fromPage = document.getElementById(from);
-  const toPage = document.getElementById(to);
-
-  // Fade out current page
-  fromPage.classList.remove("active");
-
-  // Wait for fade-out, then fade in next
-  setTimeout(() => {
-    toPage.classList.add("active");
-  }, 600);
-}
-
-    /* PAGE 1 */
-    const letter = document.getElementById("letter");
-    const messageBox = document.getElementById("messageBox");
-    const nextBtn = document.getElementById("nextBtn");
-
-    letter.addEventListener("click", () => {
-      letter.classList.add("opened");
-      messageBox.style.display = "block";
-      nextBtn.style.display = "block";
-    });
-
-    nextBtn.addEventListener("click", () => {
-      pageSwitch("page1", "page2");
-    });
-
-
-    /* PAGE 2 NO BUTTON */
-    const noBtn = document.getElementById("noBtn");
-    const sadMessage = document.getElementById("sadMessage");
-
-    const messages = [
-      "I think you clicked the wrong one 😭",
-      "Don't say no.... 💔",
-      "This button isn’t working",
-      "Capybara believes you made a mistake 🥺",
-      "Just press yes 💖"
-    ];
-
-    let msgIndex = 0;
-    let speed = 1;
-
-    function moveNoButton() {
-      speed += 0.12;
-
-      const x = (Math.random() * 180 - 90) * speed;
-      const y = (Math.random() * 120 - 60) * speed;
-
-      noBtn.style.transform = `translate(${x}px, ${y}px)`;
-
-      sadMessage.textContent = messages[msgIndex];
-      msgIndex = (msgIndex + 1) % messages.length;
-    }
-
-    noBtn.addEventListener("mouseover", moveNoButton);
-
-
-    /* YES BUTTON */
-    const yesBtn = document.getElementById("yesBtn");
-
-    yesBtn.addEventListener("click", () => {
-  pageSwitch("page2", "page3");
-
-  // Fade music properly
-  fadeOut(music12, () => {
-    fadeIn(music3, volume3);
-  });
-
-  // Start fireworks immediately
-  startFireworks();
-
-  // Fade in the message after 2.5 seconds
-  setTimeout(() => {
-    document.getElementById("finalMessage").style.opacity = 1;
-  }, 2500);
-});
-
-
-
-    /* MUSIC FADE FUNCTIONS */
-    function fadeOut(audio, callback) {
-      let fade = setInterval(() => {
-        if (audio.volume > 0.001) {
-          audio.volume -= fadeSpeed;
-        } else {
-          clearInterval(fade);
-          audio.pause();
-          callback();
-        }
-      }, 30);
-    }
-
-    function fadeIn(audio, targetVol) {
-      audio.volume = 0;
-      audio.play();
-
-      let fade = setInterval(() => {
-        if (audio.volume < targetVol) {
-          audio.volume += fadeSpeed;
-        } else {
-          clearInterval(fade);
-        }
-      }, 30);
-    }
-
-
-    /* HEART FIREWORKS BEHIND GIF */
-    function startFireworks() {
-      const page3 = document.getElementById("page3");
-
-      setInterval(() => {
-        for (let i = 0; i < 5; i++) {
-          const heart = document.createElement("div");
-          heart.classList.add("firework-heart");
-          heart.textContent = "💖";
-
-          heart.style.left = "50%";
-          heart.style.top = "55%";
-
-          heart.style.setProperty("--x", `${Math.random()*320 - 160}px`);
-          heart.style.setProperty("--y", `${Math.random()*320 - 160}px`);
-
-          page3.appendChild(heart);
-
-          setTimeout(() => heart.remove(), 2000);
-        }
-      }, 800);
-    }
-  </script>
-
-</body>
-</html>
+      <button class="no-btn" id="noBtn
