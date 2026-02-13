@@ -28,6 +28,24 @@
       box-sizing: border-box;
     }
 
+     /* PAGE FADE EFFECT */
+.page {
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.page.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* Page 3 message starts hidden */
+#finalMessage {
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+
     .active {
       display: flex;
     }
@@ -249,7 +267,8 @@
 
     <img src="images/happy.gif" class="gif-img">
 
-    <p style="color:white; font-size:20px; margin-top:15px; z-index:2;">
+    <p id="finalMessage"
+      style="color:white; font-size:20px; margin-top:15px; z-index:2;">
       Thank you for saying yes<br>
       We’ll celebrate properly when you’re back.<br>
       For now, his is my way of holding your hand from far away. 💖
@@ -283,9 +302,17 @@
 
     /* PAGE SWITCH */
     function pageSwitch(from, to) {
-      document.getElementById(from).classList.remove("active");
-      document.getElementById(to).classList.add("active");
-    }
+  const fromPage = document.getElementById(from);
+  const toPage = document.getElementById(to);
+
+  // Fade out current page
+  fromPage.classList.remove("active");
+
+  // Wait for fade-out, then fade in next
+  setTimeout(() => {
+    toPage.classList.add("active");
+  }, 600);
+}
 
     /* PAGE 1 */
     const letter = document.getElementById("letter");
@@ -337,14 +364,22 @@
     const yesBtn = document.getElementById("yesBtn");
 
     yesBtn.addEventListener("click", () => {
-      pageSwitch("page2", "page3");
+  pageSwitch("page2", "page3");
 
-      fadeOut(music12, () => {
-        fadeIn(music3, volume3);
-      });
+  // Fade music properly
+  fadeOut(music12, () => {
+    fadeIn(music3, volume3);
+  });
 
-      startFireworks();
-    });
+  // Start fireworks immediately
+  startFireworks();
+
+  // Fade in the message after 2.5 seconds
+  setTimeout(() => {
+    document.getElementById("finalMessage").style.opacity = 1;
+  }, 2500);
+});
+
 
 
     /* MUSIC FADE FUNCTIONS */
