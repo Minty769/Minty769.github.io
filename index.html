@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Valentine 💘</title>
+  <title>Valentine</title>
 
   <style>
     body {
       margin: 0;
       font-family: "Courier New", monospace;
-      background: radial-gradient(circle, #ffd1dc, #ff4d6d);
+      background: radial-gradient(circle, #ffd1dc, #ff2d55);
       height: 100vh;
       overflow: hidden;
     }
 
-    /* PAGE SYSTEM */
+    /* MOBILE FRIENDLY CENTERING */
     .page {
       display: none;
       width: 100%;
@@ -24,19 +24,28 @@
       flex-direction: column;
       text-align: center;
       position: relative;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     .active {
       display: flex;
     }
 
+    h1 {
+      color: white;
+      font-size: clamp(28px, 6vw, 46px);
+      text-shadow: 0 0 12px #ff003c;
+      margin-bottom: 20px;
+    }
+
     /* ---------------- PAGE 1 LETTER ---------------- */
 
     .letter {
-      width: 240px;
+      width: min(240px, 80vw);
       height: 170px;
-      background: #ff5c8a;
-      border: 6px solid #ff1e56;
+      background: #ff4d6d;
+      border: 6px solid #ff003c;
       box-shadow: 0 0 0 6px white, 0 0 25px pink;
       border-radius: 18px;
       cursor: pointer;
@@ -48,7 +57,6 @@
       transform: scale(1.08);
     }
 
-    /* Envelope flap */
     .flap {
       position: absolute;
       top: 0;
@@ -60,7 +68,6 @@
       transition: 0.6s;
     }
 
-    /* Cute heart seal */
     .seal {
       position: absolute;
       top: 70px;
@@ -69,7 +76,6 @@
       font-size: 32px;
     }
 
-    /* Text */
     .to-text {
       position: absolute;
       bottom: 22px;
@@ -81,7 +87,6 @@
       text-shadow: 0 0 8px #ffb3c6;
     }
 
-    /* OPEN LETTER */
     .opened .flap {
       transform: rotateX(180deg);
       transform-origin: top;
@@ -89,112 +94,100 @@
 
     .message-box {
       display: none;
-      margin-top: 35px;
-      width: 340px;
-      padding: 22px;
+      margin-top: 30px;
+      width: min(340px, 90vw);
+      padding: 20px;
       background: white;
-      border: 4px solid #ff1e56;
+      border: 4px solid #ff003c;
       border-radius: 18px;
       font-size: 18px;
-      color: #ff1e56;
-      box-shadow: 0 0 15px rgba(255,0,90,0.4);
+      color: #ff003c;
     }
 
     .next-btn {
       display: none;
-      position: absolute;
-      bottom: 45px;
+      margin-top: 25px;
       padding: 14px 45px;
       font-size: 18px;
       border: none;
       border-radius: 35px;
-      background: #ff1e56;
+      background: #ff003c;
       color: white;
       cursor: pointer;
-      box-shadow: 0 0 15px rgba(255,0,90,0.6);
     }
 
-    .next-btn:hover {
-      background: #ff003c;
-    }
-
-    /* ---------------- PAGE 2 QUESTION ---------------- */
-
-    h1 {
-      color: white;
-      font-size: 46px;
-      text-shadow: 0 0 12px #ff1e56;
-      margin-bottom: 25px;
-    }
+    /* ---------------- PAGE 2 ---------------- */
 
     .capy-img {
-      width: 290px;
+      width: min(290px, 85vw);
       border-radius: 22px;
       border: 4px solid white;
+      padding: 10px;
       background: white;
-      padding: 12px;
-      margin-bottom: 25px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.5);
+      margin-bottom: 20px;
     }
 
     .btn-container {
       display: flex;
-      gap: 35px;
-      margin-top: 10px;
+      gap: 25px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     button {
-      padding: 14px 38px;
+      padding: 14px 35px;
       font-size: 18px;
-      border: none;
       border-radius: 35px;
       cursor: pointer;
-      transition: 0.2s;
       font-weight: bold;
+      border: none;
     }
 
     .yes-btn {
-      background: #ff1e56;
-      color: white;
-      box-shadow: 0 0 12px rgba(255,0,90,0.6);
-    }
-
-    .yes-btn:hover {
       background: #ff003c;
+      color: white;
     }
 
     .no-btn {
       background: white;
-      border: 3px solid #ff1e56;
-      color: #ff1e56;
+      border: 3px solid #ff003c;
+      color: #ff003c;
       position: relative;
     }
 
     .sad-message {
-      margin-top: 22px;
-      font-size: 20px;
+      margin-top: 18px;
+      font-size: 18px;
       color: white;
-      min-height: 35px;
-      text-shadow: 0 0 8px #ff003c;
+      min-height: 30px;
     }
 
-    /* ---------------- HEARTS FLOATING ---------------- */
+    /* ---------------- PAGE 3 ---------------- */
 
-    .heart {
+    .gif-img {
+      width: min(260px, 80vw);
+      border-radius: 20px;
+      box-shadow: 0 0 25px white;
+      z-index: 2;
+    }
+
+    /* HEART FIREWORKS */
+    .firework-heart {
       position: absolute;
-      font-size: 28px;
-      animation: floatUp 2.5s ease forwards;
+      font-size: 24px;
+      animation: explode 1.8s ease-out forwards;
       pointer-events: none;
+      z-index: 1;
     }
 
-    @keyframes floatUp {
+    @keyframes explode {
       0% {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translate(0,0) scale(1);
       }
       100% {
         opacity: 0;
-        transform: translateY(-180px) scale(1.7);
+        transform: translate(var(--x), var(--y)) scale(2);
       }
     }
   </style>
@@ -202,18 +195,22 @@
 
 <body>
 
-  <!-- 🎵 MUSIC (plays only on Page 3) -->
-  <audio id="bgMusic" loop>
+  <!-- 🎵 MUSIC FILES -->
+  <audio id="music12" loop>
+    <source src="music/soft.mp3" type="audio/mpeg">
+  </audio>
+
+  <audio id="music3" loop>
     <source src="music/romantic.mp3" type="audio/mpeg">
   </audio>
 
+
   <!-- PAGE 1 -->
   <div class="page active" id="page1">
-
     <div class="letter" id="letter">
       <div class="flap"></div>
-      <div class="seal">❤️</div>
-      <div class="to-text">To Trinh</div>
+      <div class="seal">💖</div>
+      <div class="to-text">To Trinh 💌</div>
     </div>
 
     <div class="message-box" id="messageBox">
@@ -223,15 +220,13 @@
     <button class="next-btn" id="nextBtn">NEXT ➜</button>
   </div>
 
+
   <!-- PAGE 2 -->
   <div class="page" id="page2">
     <h1>Will you be my Valentine’s? 💘</h1>
 
-    <img
-      src="images/cute-illustration-of-capybara-animals-perfect-for-valentine-s-day-cards-invitations-capybara-with-hearts-in-hands-vector.jpg"
-      class="capy-img"
-      alt="Capybara Valentine"
-    />
+    <img src="images/cute-illustration-of-capybara-animals-perfect-for-valentine-s-day-cards-invitations-capybara-with-hearts-in-hands-vector.jpg"
+         class="capy-img">
 
     <div class="btn-container">
       <button class="yes-btn" id="yesBtn">Yes 💖</button>
@@ -241,69 +236,82 @@
     <div class="sad-message" id="sadMessage"></div>
   </div>
 
+
   <!-- PAGE 3 -->
   <div class="page" id="page3">
-    <h1>Thank you so much</h1>
+    <h1>Thank you so much 💗</h1>
 
-    <img src="images/happy.gif"
-         width="260"
-         style="margin-top:20px; border-radius:22px; box-shadow:0 0 20px white;">
+    <img src="images/happy.gif" class="gif-img">
 
-    <p style="color:white; font-size:22px; margin-top:18px; text-shadow:0 0 10px #ff003c;">
-      We’ll celebrate properly when you’re back
+    <p style="color:white; font-size:20px; margin-top:15px;">
+      We’ll celebrate properly when you’re back 💌
     </p>
   </div>
 
 
   <script>
+    /* ---------------- MUSIC SETTINGS (TINKER HERE) ---------------- */
+
+    let volume12 = 0.15;   // 🌸 Music for Pages 1–2 (keep low)
+    let volume3  = 0.20;   // 💖 Music for Page 3 (keep low)
+
+    let fadeSpeed = 0.005; // How slow fade happens (smaller = longer fade)
+
+    /* ------------------------------------------------------------- */
+
+    const music12 = document.getElementById("music12");
+    const music3  = document.getElementById("music3");
+
+    // Start soft music after first click (browser rule)
+    document.addEventListener("click", () => {
+      if (music12.paused) {
+        music12.volume = volume12;
+        music12.play();
+      }
+    }, { once: true });
+
+
+    /* PAGE SWITCH */
+    function pageSwitch(from, to) {
+      document.getElementById(from).classList.remove("active");
+      document.getElementById(to).classList.add("active");
+    }
+
     /* PAGE 1 */
     const letter = document.getElementById("letter");
     const messageBox = document.getElementById("messageBox");
     const nextBtn = document.getElementById("nextBtn");
 
-    let opened = false;
-
     letter.addEventListener("click", () => {
-      if (!opened) {
-        opened = true;
-        letter.classList.add("opened");
-        messageBox.style.display = "block";
-        nextBtn.style.display = "block";
-      }
+      letter.classList.add("opened");
+      messageBox.style.display = "block";
+      nextBtn.style.display = "block";
     });
 
     nextBtn.addEventListener("click", () => {
       pageSwitch("page1", "page2");
     });
 
-    /* PAGE SWITCH HELPER */
-    function pageSwitch(from, to) {
-      document.getElementById(from).classList.remove("active");
-      document.getElementById(to).classList.add("active");
-    }
 
-    /* PAGE 2 BUTTONS */
-    const yesBtn = document.getElementById("yesBtn");
+    /* PAGE 2 NO BUTTON */
     const noBtn = document.getElementById("noBtn");
     const sadMessage = document.getElementById("sadMessage");
 
     const messages = [
       "I think you clicked the wrong one 😭",
       "You’re breaking my heart… 💔",
-      "No isn’t an option bestie 😤",
+      "No isn’t an option 😤",
       "Capybara is disappointed 🥺",
-      "Pleaseeeee say yes 💖",
-      "That button doesn’t work 😅",
-      "Try again… but choose wisely 👀"
+      "Please say yes 💖"
     ];
 
     let msgIndex = 0;
     let speed = 1;
 
     function moveNoButton() {
-      speed += 0.15;
+      speed += 0.12;
 
-      const x = (Math.random() * 200 - 100) * speed;
+      const x = (Math.random() * 180 - 90) * speed;
       const y = (Math.random() * 120 - 60) * speed;
 
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
@@ -313,47 +321,69 @@
     }
 
     noBtn.addEventListener("mouseover", moveNoButton);
-    noBtn.addEventListener("click", moveNoButton);
 
-    /* PAGE 3 MUSIC + HEARTS */
-    const bgMusic = document.getElementById("bgMusic");
 
-    function startHeartRain() {
-      setInterval(() => {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.textContent = "❤️";
-
-        heart.style.left = Math.random() * window.innerWidth + "px";
-        heart.style.top = window.innerHeight + "px";
-
-        document.body.appendChild(heart);
-
-        setTimeout(() => heart.remove(), 2500);
-      }, 600);
-    }
+    /* YES BUTTON */
+    const yesBtn = document.getElementById("yesBtn");
 
     yesBtn.addEventListener("click", () => {
       pageSwitch("page2", "page3");
 
-      /* Start music softly */
-      bgMusic.volume = 0.05;
-      bgMusic.play();
+      fadeOut(music12, () => {
+        fadeIn(music3, volume3);
+      });
 
-      /* Fade volume up slowly */
-      let vol = 0.05;
+      startFireworks();
+    });
+
+
+    /* MUSIC FADE FUNCTIONS */
+    function fadeOut(audio, callback) {
       let fade = setInterval(() => {
-        if (vol < 0.4) {
-          vol += 0.01;
-          bgMusic.volume = vol;
+        if (audio.volume > 0.02) {
+          audio.volume -= fadeSpeed;
+        } else {
+          clearInterval(fade);
+          audio.pause();
+          callback();
+        }
+      }, 30);
+    }
+
+    function fadeIn(audio, targetVol) {
+      audio.volume = 0;
+      audio.play();
+
+      let fade = setInterval(() => {
+        if (audio.volume < targetVol) {
+          audio.volume += fadeSpeed;
         } else {
           clearInterval(fade);
         }
-      }, 200);
+      }, 30);
+    }
 
-      /* Hearts start */
-      startHeartRain();
-    });
+
+    /* HEART FIREWORKS */
+    function startFireworks() {
+      setInterval(() => {
+        for (let i = 0; i < 6; i++) {
+          const heart = document.createElement("div");
+          heart.classList.add("firework-heart");
+          heart.textContent = "💖";
+
+          heart.style.left = "50%";
+          heart.style.top = "55%";
+
+          heart.style.setProperty("--x", `${Math.random()*300 - 150}px`);
+          heart.style.setProperty("--y", `${Math.random()*300 - 150}px`);
+
+          document.body.appendChild(heart);
+
+          setTimeout(() => heart.remove(), 1800);
+        }
+      }, 900);
+    }
   </script>
 
 </body>
