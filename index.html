@@ -253,7 +253,7 @@
 
     <div class="message-box" id="messageBox">
       Hi Trinh 💖<br><br>
-      Not a single dat goes by where I couldn't stop thinking about you.<br><br>
+      Not a single day goes by where I couldn't stop thinking about you.<br><br>
       Wether its a small victory or just a random thought, you're always the first person I want to tell.<br><br>
       With the start of a new year coming up, I hope we can take this journey together, side by side.<br><br>
       And To start it off, I want to ask you this....
@@ -271,4 +271,160 @@
 
     <div class="btn-container">
       <button class="yes-btn" id="yesBtn">Yes 💖</button>
-      <button class="no-btn" id="noBtn
+      <button class="no-btn" id="noBtn">No 💔</button>
+    </div>
+
+    <div class="sad-message" id="sadMessage"></div>
+  </div>
+
+  <!-- PAGE 3 -->
+  <div class="page" id="page3">
+    <h1>Thank you so much 💗</h1>
+
+    <img src="images/happy.gif" class="gif-img">
+
+    <p id="finalMessage"
+      style="color:white; font-size:20px; margin-top:15px; z-index:2;">
+      Thank you for saying yes<br>
+      We’ll celebrate properly when you’re back.<br>
+      But for now, this is my way of holding your hand from far away. 💖
+    </p>
+  </div>
+
+  <script>
+    /* 🎵 MUSIC SETTINGS */
+    let volume12 = 0.015;
+    let volume3  = 0.010;
+    let fadeSpeed = 0.002;
+
+    const music12 = document.getElementById("music12");
+    const music3  = document.getElementById("music3");
+
+    document.addEventListener("click", () => {
+      if (music12.paused) {
+        music12.volume = volume12;
+        music12.play();
+      }
+    }, { once: true });
+
+    /* PAGE SWITCH */
+    function pageSwitch(from, to) {
+      document.getElementById(from).classList.remove("active");
+      setTimeout(() => {
+        document.getElementById(to).classList.add("active");
+      }, 300);
+    }
+
+    /* PAGE 1 */
+    const letter = document.getElementById("letter");
+    const messageBox = document.getElementById("messageBox");
+    const nextBtn = document.getElementById("nextBtn");
+
+    letter.addEventListener("click", () => {
+      letter.classList.add("opened");
+
+      setTimeout(() => {
+        messageBox.style.display = "block";
+        nextBtn.style.display = "block";
+      }, 700);
+    });
+
+    nextBtn.addEventListener("click", () => {
+      pageSwitch("page1", "page2");
+    });
+
+    /* PAGE 2 NO BUTTON */
+    const noBtn = document.getElementById("noBtn");
+    const sadMessage = document.getElementById("sadMessage");
+
+    const messages = [
+      "I think you clicked the wrong one 😭",
+      "Don't say no.... 💔",
+      "This button isn’t working",
+      "Capybara believes you made a mistake 🥺",
+      "Just press yes 💖"
+    ];
+
+    let msgIndex = 0;
+    let speed = 1;
+
+    function moveNoButton() {
+      speed += 0.12;
+      const x = (Math.random() * 180 - 90) * speed;
+      const y = (Math.random() * 120 - 60) * speed;
+
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+      sadMessage.textContent = messages[msgIndex];
+      msgIndex = (msgIndex + 1) % messages.length;
+    }
+
+    noBtn.addEventListener("mouseover", moveNoButton);
+
+    /* YES BUTTON */
+    const yesBtn = document.getElementById("yesBtn");
+
+    yesBtn.addEventListener("click", () => {
+      pageSwitch("page2", "page3");
+
+      fadeOut(music12, () => fadeIn(music3, volume3));
+
+      startFireworks();
+
+      setTimeout(() => {
+        document.getElementById("finalMessage").style.opacity = 1;
+      }, 2500);
+    });
+
+    /* MUSIC FADES */
+    function fadeOut(audio, callback) {
+      let fade = setInterval(() => {
+        if (audio.volume > 0.001) {
+          audio.volume -= fadeSpeed;
+        } else {
+          clearInterval(fade);
+          audio.pause();
+          callback();
+        }
+      }, 30);
+    }
+
+    function fadeIn(audio, targetVol) {
+      audio.volume = 0;
+      audio.play();
+
+      let fade = setInterval(() => {
+        if (audio.volume < targetVol) {
+          audio.volume += fadeSpeed;
+        } else {
+          clearInterval(fade);
+        }
+      }, 30);
+    }
+
+    /* HEART FIREWORKS */
+    function startFireworks() {
+      const page3 = document.getElementById("page3");
+
+      setInterval(() => {
+        for (let i = 0; i < 5; i++) {
+          const heart = document.createElement("div");
+          heart.classList.add("firework-heart");
+          heart.textContent = "💖";
+
+          heart.style.left = "50%";
+          heart.style.top = "55%";
+
+          heart.style.setProperty("--x", `${Math.random()*320 - 160}px`);
+          heart.style.setProperty("--y", `${Math.random()*320 - 160}px`);
+
+          page3.appendChild(heart);
+
+          setTimeout(() => heart.remove(), 2000);
+        }
+      }, 800);
+    }
+  </script>
+
+</body>
+</html>
