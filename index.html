@@ -9,7 +9,7 @@
     body {
       margin: 0;
       font-family: "Courier New", monospace;
-      background: radial-gradient(circle, #ffd1dc, #ff2d55);
+      background: radial-gradient(circle, #ffb6c1, #ff003c);
       height: 100vh;
       overflow: hidden;
     }
@@ -42,12 +42,12 @@
     /* ---------------- PAGE 1 LETTER ---------------- */
 
     .letter {
-      width: min(240px, 80vw);
-      height: 170px;
+      width: min(260px, 85vw);
+      height: 180px;
       background: #ff4d6d;
       border: 6px solid #ff003c;
-      box-shadow: 0 0 0 6px white, 0 0 25px pink;
-      border-radius: 18px;
+      box-shadow: 0 0 0 6px white, 0 0 30px pink;
+      border-radius: 20px;
       cursor: pointer;
       position: relative;
       transition: transform 0.3s ease;
@@ -73,7 +73,7 @@
       top: 70px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 32px;
+      font-size: 34px;
     }
 
     .to-text {
@@ -84,7 +84,7 @@
       font-size: 22px;
       color: white;
       font-weight: bold;
-      text-shadow: 0 0 8px #ffb3c6;
+      text-shadow: 0 0 10px #ffd1dc;
     }
 
     .opened .flap {
@@ -102,6 +102,7 @@
       border-radius: 18px;
       font-size: 18px;
       color: #ff003c;
+      line-height: 1.4;
     }
 
     .next-btn {
@@ -130,8 +131,9 @@
     .btn-container {
       display: flex;
       gap: 25px;
-      flex-wrap: wrap;
       justify-content: center;
+      align-items: center;
+      margin-top: 10px;
     }
 
     button {
@@ -152,246 +154,4 @@
       background: white;
       border: 3px solid #ff003c;
       color: #ff003c;
-      position: relative;
-    }
-
-    .sad-message {
-      margin-top: 18px;
-      font-size: 18px;
-      color: white;
-      min-height: 30px;
-    }
-
-    /* ---------------- PAGE 3 ---------------- */
-
-    .gif-img {
-      width: min(260px, 80vw);
-      border-radius: 20px;
-      box-shadow: 0 0 25px white;
-      z-index: 2;
-    }
-
-    /* HEART FIREWORKS */
-    .firework-heart {
-      position: absolute;
-      font-size: 24px;
-      animation: explode 1.8s ease-out forwards;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    @keyframes explode {
-      0% {
-        opacity: 1;
-        transform: translate(0,0) scale(1);
-      }
-      100% {
-        opacity: 0;
-        transform: translate(var(--x), var(--y)) scale(2);
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- 🎵 MUSIC FILES -->
-  <audio id="music12" loop>
-    <source src="music/soft.mp3" type="audio/mpeg">
-  </audio>
-
-  <audio id="music3" loop>
-    <source src="music/romantic.mp3" type="audio/mpeg">
-  </audio>
-
-
-  <!-- PAGE 1 -->
-  <div class="page active" id="page1">
-    <div class="letter" id="letter">
-      <div class="flap"></div>
-      <div class="seal">💖</div>
-      <div class="to-text">To Trinh</div>
-    </div>
-
-    <div class="message-box" id="messageBox">(
-      
-      There hasn't been a day where I don't think about you. Whether it's a small victory or just a random thought, you're always the first person I want to tell. It’s still crazy to me that we met by total coincidence! 
-      Out of all the possible days I could have been on discord, I saw your message and decided to send a little text. Now look at where we are now! You're my favorite person to talk to, and someone I look forward to always spending time with.
-The quote "Cherish the mundane" you mentioned before still sticks with me to this. Because of you, I’ve learned to appreciate the present and the little things in life rather than just waiting for the weekend to come.
-I truly appreciate from the bottom of my heart that you still find time to talk to me every day. Even with us being thousands of miles away, we can talk for hours until one of us finally has to go which has been usually me lately LOL.
-      I couldn’t have asked for a better way to start the year. And with Lunar New Year also coming up, I hope we can take this journey together, side by side. To start it off, I want to ask you this...
-    )
-    </div>
-
-    <button class="next-btn" id="nextBtn">NEXT ➜</button>
-  </div>
-
-
-  <!-- PAGE 2 -->
-  <div class="page" id="page2">
-    <h1>Will you be my Valentine’s? 💘</h1>
-
-    <img src="images/cute-illustration-of-capybara-animals-perfect-for-valentine-s-day-cards-invitations-capybara-with-hearts-in-hands-vector.jpg"
-         class="capy-img">
-
-    <div class="btn-container">
-      <button class="yes-btn" id="yesBtn">Yes 💖</button>
-      <button class="no-btn" id="noBtn">No 💔</button>
-    </div>
-
-    <div class="sad-message" id="sadMessage"></div>
-  </div>
-
-
-  <!-- PAGE 3 -->
-  <div class="page" id="page3">
-    <h1>Thank you so much 💗</h1>
-
-    <img src="images/happy.gif" class="gif-img">
-
-    <p style="color:white; font-size:20px; margin-top:15px;">
-     Thank you so much 💖
-      We’ll celebrate properly when you’re back. For now, this is my way of holding your hand from far away
-    </p>
-  </div>
-
-
-  <script>
-    /* ---------------- MUSIC SETTINGS (TINKER HERE) ---------------- */
-
-    let volume12 = 0.02;   // 🌸 Music for Pages 1–2 (keep low)
-    let volume3  = 0.02;   // 💖 Music for Page 3 (keep low)
-
-    let fadeSpeed = 0.005; // How slow fade happens (smaller = longer fade)
-
-    /* ------------------------------------------------------------- */
-
-    const music12 = document.getElementById("music12");
-    const music3  = document.getElementById("music3");
-
-    // Start soft music after first click (browser rule)
-    document.addEventListener("click", () => {
-      if (music12.paused) {
-        music12.volume = volume12;
-        music12.play();
-      }
-    }, { once: true });
-
-
-    /* PAGE SWITCH */
-    function pageSwitch(from, to) {
-      document.getElementById(from).classList.remove("active");
-      document.getElementById(to).classList.add("active");
-    }
-
-    /* PAGE 1 */
-    const letter = document.getElementById("letter");
-    const messageBox = document.getElementById("messageBox");
-    const nextBtn = document.getElementById("nextBtn");
-
-    letter.addEventListener("click", () => {
-      letter.classList.add("opened");
-      messageBox.style.display = "block";
-      nextBtn.style.display = "block";
-    });
-
-    nextBtn.addEventListener("click", () => {
-      pageSwitch("page1", "page2");
-    });
-
-
-    /* PAGE 2 NO BUTTON */
-    const noBtn = document.getElementById("noBtn");
-    const sadMessage = document.getElementById("sadMessage");
-
-    const messages = [
-      "I think you clicked the wrong one 😭",
-      "You’re breaking my heart… 💔",
-      "No isn’t an option 😤",
-      "Capybara is disappointed 🥺",
-      "Please say yes 💖"
-    ];
-
-    let msgIndex = 0;
-    let speed = 1;
-
-    function moveNoButton() {
-      speed += 0.12;
-
-      const x = (Math.random() * 180 - 90) * speed;
-      const y = (Math.random() * 120 - 60) * speed;
-
-      noBtn.style.transform = `translate(${x}px, ${y}px)`;
-
-      sadMessage.textContent = messages[msgIndex];
-      msgIndex = (msgIndex + 1) % messages.length;
-    }
-
-    noBtn.addEventListener("mouseover", moveNoButton);
-
-
-    /* YES BUTTON */
-    const yesBtn = document.getElementById("yesBtn");
-
-    yesBtn.addEventListener("click", () => {
-      pageSwitch("page2", "page3");
-
-      fadeOut(music12, () => {
-        fadeIn(music3, volume3);
-      });
-
-      startFireworks();
-    });
-
-
-    /* MUSIC FADE FUNCTIONS */
-    function fadeOut(audio, callback) {
-      let fade = setInterval(() => {
-        if (audio.volume > 0.02) {
-          audio.volume -= fadeSpeed;
-        } else {
-          clearInterval(fade);
-          audio.pause();
-          callback();
-        }
-      }, 30);
-    }
-
-    function fadeIn(audio, targetVol) {
-      audio.volume = 0;
-      audio.play();
-
-      let fade = setInterval(() => {
-        if (audio.volume < targetVol) {
-          audio.volume += fadeSpeed;
-        } else {
-          clearInterval(fade);
-        }
-      }, 30);
-    }
-
-
-    /* HEART FIREWORKS */
-    function startFireworks() {
-      setInterval(() => {
-        for (let i = 0; i < 6; i++) {
-          const heart = document.createElement("div");
-          heart.classList.add("firework-heart");
-          heart.textContent = "💖";
-
-          heart.style.left = "50%";
-          heart.style.top = "55%";
-
-          heart.style.setProperty("--x", `${Math.random()*300 - 150}px`);
-          heart.style.setProperty("--y", `${Math.random()*300 - 150}px`);
-
-          document.body.appendChild(heart);
-
-          setTimeout(() => heart.remove(), 1800);
-        }
-      }, 900);
-    }
-  </script>
-
-</body>
-</html>
+      position
